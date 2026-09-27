@@ -1,0 +1,364 @@
+<title>Masterbatch Funding Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#F2F4F3; --surface:#FFFFFF; --ink:#16211F; --muted:#56635F; --line:#D5DCD9;
+  --accent:#0B6E6A; --accent-soft:#DDEEEC;
+  --h1:#EEF3F1; --h2:#F6DFA8; --h3:#EE9F5B; --h4:#C8452B; --h-ink4:#FFFFFF;
+  --good:#2F7D4A; --warn:#A8651A; --bad:#B23A2B;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#101716; --surface:#172120; --ink:#E6EDEB; --muted:#9AA8A4; --line:#2B3836;
+    --accent:#4FC2BB; --accent-soft:#1B3431;
+    --h1:#1C2826; --h2:#5A4A1E; --h3:#9A5A26; --h4:#D0533A; --h-ink4:#FFFFFF;
+    --good:#6FC48A; --warn:#E0A156; --bad:#EE7B69;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#101716; --surface:#172120; --ink:#E6EDEB; --muted:#9AA8A4; --line:#2B3836;
+  --accent:#4FC2BB; --accent-soft:#1B3431;
+  --h1:#1C2826; --h2:#5A4A1E; --h3:#9A5A26; --h4:#D0533A; --h-ink4:#FFFFFF;
+  --good:#6FC48A; --warn:#E0A156; --bad:#EE7B69;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:20px;padding-block:32px 64px;display:flex;flex-direction:column;gap:48px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(2rem,5vw,3.1rem);font-weight:800;font-stretch:80%;letter-spacing:-.01em}
+h2{font-size:1.7rem;font-weight:750;font-stretch:85%}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0;max-width:68ch}
+a{color:var(--accent)}
+.eyebrow{font:600 .75rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:1.1rem;color:var(--muted)}
+header{display:flex;flex-direction:column;gap:14px;border-bottom:1px solid var(--line);padding-bottom:28px}
+.meta{font:400 .8rem var(--mono);color:var(--muted)}
+section{display:flex;flex-direction:column;gap:18px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{font:600 .9rem var(--body);padding:8px 16px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.tab:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.panel{display:flex;flex-direction:column;gap:48px}
+
+.callout{background:var(--accent-soft);border-radius:10px;padding:20px 22px;display:flex;flex-direction:column;gap:10px}
+.callout strong{font-family:var(--display);font-size:1.15rem}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.card ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px}
+.card p{font-size:.95rem}
+.small{font-size:.85rem;color:var(--muted)}
+
+/* flow diagram */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.flow>div{padding:16px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.flow>div:last-child{border-right:0}
+.flow .n{font:600 .75rem var(--mono);color:var(--accent)}
+.flow p{font-size:.9rem;color:var(--muted)}
+@media (max-width:720px){.flow{grid-template-columns:1fr 1fr}.flow>div:nth-child(2){border-right:0}.flow>div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media (max-width:440px){.flow{grid-template-columns:1fr}.flow>div{border-right:0;border-bottom:1px solid var(--line)}.flow>div:last-child{border-bottom:0}}
+
+/* heat grid */
+.heatwrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:620px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line);font-size:.92rem}
+thead th{font:600 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--surface)}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+tbody th{font-family:var(--display);font-weight:700;font-size:1rem;width:24%}
+.cell{border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;cursor:pointer;border:1px solid transparent;width:100%;text-align:left;font:inherit;color:var(--ink)}
+.cell b{font:600 .72rem var(--mono);letter-spacing:.06em}
+.cell span{font-size:.85rem;line-height:1.4}
+.l1{background:var(--h1)} .l2{background:var(--h2)} .l3{background:var(--h3)} .l4{background:var(--h4);color:var(--h-ink4)}
+.cell[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font:400 .8rem var(--mono);color:var(--muted)}
+.legend i{display:inline-block;width:18px;height:12px;border-radius:3px;vertical-align:middle;margin-right:6px;border:1px solid var(--line)}
+.detail{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-height:110px}
+.detail h3{font-size:1rem}
+.detail p{font-size:.93rem}
+
+/* stat row */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.stat .v{font:700 1.7rem var(--display);font-stretch:85%;font-variant-numeric:tabular-nums}
+.stat .k{font-size:.88rem;color:var(--muted)}
+.stat .src{font:400 .72rem var(--mono);color:var(--muted)}
+
+.pill{display:inline-block;font:600 .7rem var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid currentColor}
+.p-good{color:var(--good)} .p-warn{color:var(--warn)} .p-bad{color:var(--bad)}
+
+.plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.plan .card h3{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.plan .card h3 small{font:400 .72rem var(--mono);color:var(--muted)}
+
+.steps{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--line);margin-left:6px}
+.step{padding:0 0 18px 20px;position:relative;display:flex;flex-direction:column;gap:4px}
+.step::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+.step .when{font:600 .75rem var(--mono);color:var(--accent);letter-spacing:.06em}
+
+.sources{font-size:.85rem;color:var(--muted)}
+.sources ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:4px}
+footer{border-top:1px solid var(--line);padding-top:20px}
+@media (prefers-reduced-motion:no-preference){.cell{transition:box-shadow .15s}}
+</style>
+
+<div class="wrap">
+<header>
+  <span class="eyebrow">Briefing · Functional masterbatch · UK + Malaysia</span>
+  <h1>Where the money is for functional masterbatch</h1>
+  <p class="lede">A funding map inspired by John's capital heat-map tool, rebuilt for our sector: who funds masterbatch in the UK and Malaysia, why money is moving now, and what each team would do next.</p>
+  <span class="meta">Prepared 27 Sep 2026 · Heat ratings are an analyst assessment from public sources, not a dataset</span>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="t-map" aria-selected="true" aria-controls="p-map">Funding map</button>
+    <button class="tab" role="tab" id="t-plan" aria-selected="false" aria-controls="p-plan">Action plan</button>
+    <button class="tab" role="tab" id="t-john" aria-selected="false" aria-controls="p-john">What John built</button>
+  </div>
+</header>
+
+<!-- ============ FUNDING MAP ============ -->
+<div class="panel" id="p-map" role="tabpanel" aria-labelledby="t-map">
+
+  <div class="callout">
+    <strong>The headline for the meeting</strong>
+    <p>Masterbatch is capital-heavy and margin-thin, so venture capital mostly ignores it. The money that fits us is <b>government incentives and cheap loans (strongest in Malaysia)</b>, <b>customers and brand owners paying for recyclability (strongest in the UK)</b>, and <b>trade buyers or private equity</b> consolidating specialists. Regulation is what pushes that money toward functional grades right now.</p>
+  </div>
+
+  <section>
+    <span class="eyebrow">Why now</span>
+    <h2>Regulation is creating demand for functional grades</h2>
+    <div class="stats">
+      <div class="stat"><span class="v">£228.82/t</span><span class="k">UK Plastic Packaging Tax from 1 Apr 2026 on packaging under 30% recycled content</span><span class="src">HMRC via ERP UK</span></div>
+      <div class="stat"><span class="v">£415 vs £545</span><span class="k">Illustrative UK EPR fee per tonne for green- vs red-rated plastic packaging, 2026-27</span><span class="src">PackUK illustrative rates</span></div>
+      <div class="stat"><span class="v">2026 → 2030</span><span class="k">Malaysia packaging EPR: voluntary phase from 2026, mandatory by 2030</span><span class="src">KPKT via Eco-Business</span></div>
+      <div class="stat"><span class="v">7.9%</span><span class="k">Global additive masterbatch growth, 2025 → 2026 ($4.83bn → $5.21bn)</span><span class="src">Business Research Co. (market report)</span></div>
+    </div>
+    <p class="small">What this means for us: every brand owner selling into the UK now pays more for packaging that is hard to recycle or low in recycled content. Grades that fix that problem (compatibilisers for recycled content, NIR-detectable blacks, stabilisers that let recyclate perform, clean-label additives) have a buyer with a budget. Malaysia is two to four years behind on the same curve, which is a chance to be the local supplier before EPR becomes mandatory.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">The heat map</span>
+    <h2>Capital sources by region</h2>
+    <p>Hotter means a better fit for a functional masterbatch business: more money available, easier access, and better match to what we make. Select a cell for the detail.</p>
+    <div class="legend">
+      <span><i class="l1"></i>Weak fit</span><span><i class="l2"></i>Some fit</span><span><i class="l3"></i>Good fit</span><span><i class="l4"></i>Priority</span>
+    </div>
+    <div class="heatwrap">
+      <table>
+        <thead><tr><th>Capital source</th><th>UK</th><th>Malaysia</th></tr></thead>
+        <tbody id="heat"></tbody>
+      </table>
+    </div>
+    <div class="detail" id="detail" aria-live="polite"></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">The market</span>
+    <h2>Big players and where they get their money</h2>
+    <div class="grid3">
+      <div class="card">
+        <h3>Global majors</h3>
+        <p>Avient (formerly PolyOne, bought Clariant's masterbatch business in 2020), Ampacet, LyondellBasell (A. Schulman), Cabot, Tosaf, Plastika Kritis.</p>
+        <p class="small">Funded from their own balance sheets, bond markets and listed equity. They grow by acquisition, which makes them potential <b>buyers, partners or distributors</b> of a specialist.</p>
+      </div>
+      <div class="card">
+        <h3>UK specialists</h3>
+        <p>Hubron (black masterbatch, Manchester area), Broadway Colours (colour, additive, and certified graphene masterbatch compounding partner for HydroGraph), Colloids (Tosaf-owned since 2004).</p>
+        <p class="small">Mostly privately owned. Pattern: owner-managed firms that end up sold to a major or to private equity.</p>
+      </div>
+      <div class="card">
+        <h3>Malaysia</h3>
+        <p>DIC Compounds Malaysia (Japanese-owned), Perfect Colourants &amp; Plastics (one of the largest local producers), plus a long tail of private SMEs in Johor, Selangor and Penang.</p>
+        <p class="small">Local firms lean on bank debt, MIDF soft loans and MIDA tax incentives. Few listed pure plays on Bursa, so equity comes mostly from family and strategic owners.</p>
+      </div>
+    </div>
+    <p class="small">Recent product moves show where the majors are spending: Ampacet launched an NIR-detectable black for recyclable food packaging (Oct 2025), and Tosaf widened its compostable range in 2026. Those are the functional niches with the clearest buyers.</p>
+  </section>
+</div>
+
+<!-- ============ ACTION PLAN ============ -->
+<div class="panel" id="p-plan" role="tabpanel" aria-labelledby="t-plan" hidden>
+  <section>
+    <span class="eyebrow">What each team does</span>
+    <h2>How we go after it</h2>
+    <div class="plan">
+      <div class="card">
+        <h3>Finance <small>who pays</small></h3>
+        <ul>
+          <li>Malaysia: check our score under MIDA's New Incentive Framework (live since 1 Mar 2026; up to 100% Investment Tax Allowance or special tax rates as low as 0%, for up to 15 years).</li>
+          <li>Malaysia: price new lines through MIDF's automation soft loan (up to RM20m, 4% for SMEs) and GTFS 5.0 guarantees (60–80% of the green portion, open to 31 Dec 2026).</li>
+          <li>UK: claim R&amp;D tax relief on formulation work; apply for Made Smarter (up to £20k matched) for line digitisation.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Marketing <small>who buys</small></h3>
+        <ul>
+          <li>Lead with the customer's cost, not our chemistry: "this grade moves your pack from red to green under EPR" or "helps you pass 30% recycled content".</li>
+          <li>Target UK converters and brand owners with heavy plastic packaging tax bills first; they have budget.</li>
+          <li>In Malaysia, join the MPMA voluntary-EPR effort to be visible before 2030.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Technical <small>what we prove</small></h3>
+        <ul>
+          <li>Pick one or two hero grades with measurable proof: recyclate performance, NIR sortability, RAM recyclability rating.</li>
+          <li>Build case-study data with a customer trial; this is what grants and buyers both ask for.</li>
+          <li>Scan open Innovate UK competitions (Smart grants are paused; themed calls are open, often needing a partner).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Operations <small>where we make it</small></h3>
+        <ul>
+          <li>Use Malaysia for cost-efficient capacity backed by incentives; the UK for technical service and close customer work.</li>
+          <li>Document energy and waste savings on any new line; green financing depends on them.</li>
+          <li>Keep traceability records now; the UK plans mandatory certification of recycled content claims.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Sequence</span>
+    <h2>30 / 60 / 90 days</h2>
+    <div class="steps">
+      <div class="step"><span class="when">NEXT 30 DAYS</span><h3>Build the target list</h3><p>30–50 named funders and buyers in a spreadsheet: agency, bank, investor or customer; region; ticket size; contact; status. This becomes the data behind our own version of John's map.</p></div>
+      <div class="step"><span class="when">30–60 DAYS</span><h3>Two applications, ten conversations</h3><p>Submit one Malaysia incentive or loan enquiry (MIDA or MIDF) and one UK application (Made Smarter or a themed Innovate UK call). Book ten meetings with packaging customers about EPR and tax costs.</p></div>
+      <div class="step"><span class="when">60–90 DAYS</span><h3>Decide on equity</h3><p>With traction data in hand, decide whether we want strategic partners or private equity at all, or grow on grants, loans and customer-funded development.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Open questions for the meeting</span>
+    <h2>What I need from you</h2>
+    <div class="card">
+      <ul>
+        <li>How much are we looking to raise, and for what: a new line, R&amp;D, working capital, or market entry?</li>
+        <li>Which entity raises it: UK, Malaysia, or both? This decides which schemes we qualify for.</li>
+        <li>Are we open to outside equity, or debt and grants only?</li>
+        <li>Which two grades do we want to lead with?</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- ============ JOHN ============ -->
+<div class="panel" id="p-john" role="tabpanel" aria-labelledby="t-john" hidden>
+  <section>
+    <span class="eyebrow">Analysis</span>
+    <h2>What John built</h2>
+    <p>A <b>capital-flow intelligence dashboard</b>: a map that layers who holds money (billionaires by wealth tier, banks, VCs, family offices), where it sits geographically, which sectors it goes into, and which companies receive it. The heat map shows concentration; zooming into a region (Africa, London) shows the sectors and deals underneath. His angle was a <b>gap lens</b>: seeing how little of that flow reaches Black-led businesses.</p>
+    <div class="flow">
+      <div><span class="n">1 · COLLECT</span><h3>Public data via APIs</h3><p>Wealth lists (e.g. Forbes), deal databases (Crunchbase, PitchBook), company registries (Companies House), filings and news.</p></div>
+      <div><span class="n">2 · CONNECT</span><h3>MCP servers</h3><p>MCP (Model Context Protocol) lets an AI assistant call those APIs as tools, so it can pull and join data by asking questions.</p></div>
+      <div><span class="n">3 · MAP</span><h3>Geo heat layers</h3><p>Records tagged with location, sector and amount, drawn with a map library (Leaflet, Mapbox or deck.gl).</p></div>
+      <div><span class="n">4 · HOST</span><h3>Railway</h3><p>Railway is a hosting service: it runs the app and database online. It is where the app lives, not the tool that built it.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Your security question</span>
+    <h2>Is it legal to show billionaires' names?</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3><span class="pill p-good">Mostly fine</span></h3>
+        <p>Net worth estimates, company holdings and published investments are public and widely republished. Using them for analysis is normal practice.</p>
+      </div>
+      <div class="card">
+        <h3><span class="pill p-warn">Watch for</span></h3>
+        <p>"Public" is not a free pass. Under UK GDPR, individuals' data still needs a lawful purpose, even when it is online. Many data providers' terms forbid scraping or republishing. Home addresses or family details would cross the line.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Adapting it</span>
+    <h2>Our version is smaller and more useful</h2>
+    <p>We don't need every billionaire on earth. We need about 50 organisations that fund or buy functional masterbatch in two countries. The heat map on the first tab is version one. Version two is the 30-day target list, plotted on a map with the same layers John used: funder type, region, sector focus, ticket size.</p>
+  </section>
+</div>
+
+<footer class="sources">
+  <h3 style="margin-bottom:8px">Sources</h3>
+  <ul>
+    <li><a href="https://erp-recycling.org/uk/news-and-events/2026/01/plastic-packaging-tax-changes-in-2026/">ERP UK: Plastic Packaging Tax changes in 2026</a></li>
+    <li><a href="https://www.packaging-gateway.com/features/hmrc-uk-recycled-content-packaging-up-17-since-plastic-tax-began/">Packaging Gateway: HMRC recycled-content data</a></li>
+    <li><a href="https://www.packaging-gateway.com/features/how-eco-modulated-epr-fees-are-changing-packaging-economics/">Packaging Gateway: eco-modulated EPR fees</a></li>
+    <li><a href="https://www.eco-business.com/news/malaysias-epr-rollout-must-move-beyond-voluntary-action-to-create-a-level-playing-field-says-expert/">Eco-Business: Malaysia EPR rollout</a></li>
+    <li><a href="https://malaysian-business.com/portal/2026/07/22/circular-economy-acceleration-malaysias-plastics-sector-drives-voluntary-epr-ahead-of-2030-mandate/">Malaysian Business: plastics sector voluntary EPR</a></li>
+    <li><a href="https://www.mida.gov.my/media-release/new-incentive-framework-nif/">MIDA: New Incentive Framework</a></li>
+    <li><a href="https://www.industrialproperty.my/mida-new-incentive-framework-nif-malaysia-2026-industrial-manufacturers/">MIDA NIF 2026 guide</a></li>
+    <li><a href="https://automation.org.my/midf-soft-loan-scheme-for-automation-modernisation-enhancement/">MIDF Soft Loan Scheme for Automation &amp; Modernisation</a></li>
+    <li><a href="https://www.gtfs.my/faq/what-gtfs-50">GTFS 5.0</a></li>
+    <li><a href="https://teeptrak.com/en/made-smarter-funding-guide-uk-manufacturers-2026/">Made Smarter funding guide 2026</a></li>
+    <li><a href="https://www.mpa.co.uk/news-insights/news/smart-grants-paused-what-to-do/">MPA: Innovate UK Smart grants paused</a></li>
+    <li><a href="https://venturenomix.com/innovate-uk-grants-q3-q4-2026/">Innovate UK open grants Q3/Q4 2026</a></li>
+    <li><a href="https://www.thebusinessresearchcompany.com/report/additive-masterbatch-global-market-report">Additive masterbatch market report 2026</a></li>
+    <li><a href="https://www.specialchem.com/polymer-additives/news/ampacet-unveils-application-driven-masterbatch-innovations-at-plastindia-2026">SpecialChem: Ampacet innovations</a></li>
+    <li><a href="https://investingnews.com/hydrograph-certifies-broadway-as-qualified-compounding-partner-expanding-commercial-graphene-masterbatch-capabilities-in-the-uk-and-europe/">HydroGraph certifies Broadway</a></li>
+    <li><a href="https://www.tosaf.com/experts_insights/tosaf-color-service-best-color-masterbatch-solutions-for-the-global-plastics-industry/">Tosaf / Colloids</a></li>
+    <li><a href="https://www.dcm-dic.com.my/">DIC Compounds Malaysia</a> · <a href="https://perfectcolourants.com/masterbatch-manufacturer-in-malaysia/">Perfect Colourants &amp; Plastics</a></li>
+  </ul>
+</footer>
+</div>
+
+<script>
+const rows = [
+  {src:"Government grants", uk:[3,"Themed Innovate UK calls; Made Smarter up to £20k","Innovate UK Smart grants have been paused since Jan 2025, but themed competitions keep opening, and many reward collaboration with a university or customer. Made Smarter offers up to £20k matched funding for digital and automation projects in most English regions."], my:[3,"SAG MADANI automation grant; MIDA grants","The MADANI Smart Automation Grant supports robotics, IoT and advanced machinery. MIDA runs further grants for strategic projects. Useful for line upgrades rather than R&D."]},
+  {src:"Tax incentives", uk:[3,"R&D tax relief on formulation work","New grade development and trials usually qualify for UK R&D tax relief, which returns part of the cost as cash or a tax credit. Low effort once records are kept properly."], my:[4,"MIDA NIF: up to 100% ITA or 0% special rate, up to 15 yrs","Since 1 March 2026 incentives are scored against national priorities (NIMP 2030) instead of being granted by activity. Higher-value, greener, more automated plastics projects score better. This is the single biggest lever in Malaysia."]},
+  {src:"Concessional loans", uk:[2,"British Business Bank programmes via lenders","The British Business Bank backs loans through high-street and specialist lenders. Helpful, but terms are closer to market rates than Malaysia's schemes."], my:[4,"MIDF soft loan up to RM20m at 4% (SME); GTFS 5.0","MIDF's automation and modernisation loan covers machinery, factory and working capital with up to 10-year tenure and a 3-year grace period. GTFS 5.0 gives a 60–80% government guarantee on the green part of a project until 31 Dec 2026."]},
+  {src:"Bank and green finance", uk:[3,"Asset finance and sustainability-linked loans","UK banks fund extruders and compounding lines on asset finance. Sustainability-linked loans reward documented recycled-content or energy targets."], my:[3,"Banks participating in GTFS; green sukuk","Malaysian banks lend under GTFS and offer green financing. Documented environmental benefit lowers the cost."]},
+  {src:"Customers and brand owners", uk:[4,"Plastic tax and EPR make them pay for recyclability","Brand owners pay £228.82/t on packaging under 30% recycled content, and red-rated plastic packaging faces higher EPR fees than green-rated. Grades that improve recyclate performance or sortability can be funded through joint development, prepayment or long supply contracts."], my:[3,"Voluntary EPR from 2026, mandatory by 2030","Exporters to the UK and EU already feel the pressure. Domestic demand grows as EPR becomes mandatory. Industry bodies (MPMA, FMM) are lobbying for Budget 2027 incentives linked to EPR."]},
+  {src:"Trade buyers and private equity", uk:[3,"Majors and PE consolidate specialists","Majors such as Avient and Tosaf have grown by buying specialists (Avient bought Clariant's masterbatch unit; Tosaf bought UK-based Colloids). European PE also consolidates the niche, e.g. Koinos Capital buying Ultrabatch in 2023. Relevant if the owners want growth capital or an exit."], my:[2,"Japanese and regional strategic owners","Foreign groups (for example DIC) own local producers. Less active PE market for this niche; strategic partnership is more realistic than a fund."]},
+  {src:"Venture capital", uk:[1,"Only for novel additive technology","VC funds new materials science (e.g. Interface Polymers' compatibiliser work, backed by Innovate UK), not conventional masterbatch production. Only relevant if we own a genuinely new additive."], my:[1,"Very limited for this sector","Malaysian VC focuses on digital and tech. Not a realistic route."]},
+  {src:"Family offices and private wealth", uk:[2,"Patient capital, relationship-led","Family offices sometimes back profitable industrial businesses for steady returns. Hard to find without introductions; this is where a tool like John's helps."], my:[2,"Conglomerate families; relationship-led","Much Malaysian manufacturing capital is family-held. Access comes through trade associations and personal networks."]}
+];
+const labels = {1:"WEAK FIT",2:"SOME FIT",3:"GOOD FIT",4:"PRIORITY"};
+const tbody = document.getElementById("heat");
+const detail = document.getElementById("detail");
+function show(r, region, btn){
+  const d = r[region];
+  document.querySelectorAll(".cell").forEach(c=>c.setAttribute("aria-pressed","false"));
+  btn.setAttribute("aria-pressed","true");
+  detail.innerHTML = "";
+  const h = document.createElement("h3");
+  h.textContent = r.src + " · " + (region==="uk"?"UK":"Malaysia") + " · " + labels[d[0]].toLowerCase();
+  const p = document.createElement("p"); p.textContent = d[2];
+  detail.append(h,p);
+}
+rows.forEach((r,i)=>{
+  const tr = document.createElement("tr");
+  const th = document.createElement("th"); th.scope="row"; th.textContent = r.src; tr.append(th);
+  ["uk","my"].forEach(region=>{
+    const td = document.createElement("td");
+    const b = document.createElement("button");
+    b.className = "cell l"+r[region][0];
+    b.setAttribute("aria-pressed","false");
+    b.innerHTML = "<b></b><span></span>";
+    b.querySelector("b").textContent = labels[r[region][0]];
+    b.querySelector("span").textContent = r[region][1];
+    b.addEventListener("click",()=>show(r,region,b));
+    td.append(b); tr.append(td);
+    if(i===4 && region==="uk") setTimeout(()=>show(r,region,b));
+  });
+  tbody.append(tr);
+});
+const tabs = document.querySelectorAll(".tab");
+function select(id){
+  tabs.forEach(t=>{
+    const on = t.id===id;
+    t.setAttribute("aria-selected", on);
+    document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+  });
+  try{localStorage.setItem("mb-tab",id)}catch(e){}
+}
+tabs.forEach(t=>t.addEventListener("click",()=>select(t.id)));
+const hash = location.hash.slice(1);
+if(["map","plan","john"].includes(hash)) select("t-"+hash);
+</script>
