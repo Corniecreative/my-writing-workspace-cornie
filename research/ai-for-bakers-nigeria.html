@@ -123,14 +123,8 @@ footer{margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-si
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <style>
-.counter{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
-.tile{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:8px;align-content:start}
-.tile .uk{font:700 .7rem/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--crust)}
-.tile b{font-family:var(--display);font-size:1.02rem;line-height:1.25}
-.tile .ng{font-size:.9rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
-.tile .ng strong{color:var(--green)}
 .standard{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.standard div{padding:12px 14px;display:grid;gap:4px;font-size:.95rem}
+.standard div{padding:12px 14px;display:grid;gap:4px;font-size:.95rem;align-content:start}
 .standard div:first-child{background:var(--crust-soft)}
 .standard div:last-child{background:var(--green-soft)}
 .standard h4{margin:0;font:700 .72rem/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase}
@@ -140,39 +134,69 @@ footer{margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-si
 .stat-line div{border-top:3px solid var(--gold);padding-top:8px}
 .stat-line b{display:block;font-family:var(--display);font-size:1.7rem;font-variant-numeric:tabular-nums;line-height:1.1}
 .stat-line span{font-size:.9rem;color:var(--muted)}
-.label-mock{background:var(--surface);border:2px solid var(--ink);border-radius:6px;padding:14px 16px;max-width:420px;font-size:.88rem;display:grid;gap:6px}
-.label-mock .ln{font-family:var(--display);font-weight:800;font-size:1.1rem}
-.label-mock .row{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:6px;font-variant-numeric:tabular-nums}
+.shift td:first-child{font-weight:500;color:var(--muted);white-space:normal}
+.shift td:nth-child(2){font-weight:700;color:var(--ink)}
+.shift td:nth-child(3){white-space:nowrap;color:var(--green);font-weight:600}
+.formula{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.part{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:6px;align-content:start}
+.part .k{font:700 .72rem/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.part b{font-family:var(--display);font-size:1.1rem}
+.part span{font-size:.92rem;color:var(--muted)}
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.compare .prompt pre{min-height:0}
 @media (max-width:560px){.standard{grid-template-columns:1fr}}
 </style>
 
 <div class="wrap">
 
 <header>
-  <span class="eyebrow">Facilitator pack · 60-minute session · UK practice for Nigerian bakers</span>
-  <h1>Oven to Phone: the UK bakery standard, made doable with AI</h1>
-  <p class="lede">In the UK, a small bakery is expected to know its cost per item, label every allergen, keep a daily food-safety diary, answer its reviews, and plan to waste almost nothing. Big chains pay consultants and software for this. This session shows Nigerian bakers how to reach the same standard with a phone and free AI, in an afternoon.</p>
-  <div class="thesis">
-    <div><b>Standards build trust</b><span>A labelled, costed, hygienic, well-reviewed bakery can charge more and win hotel, supermarket and corporate orders.</span></div>
-    <div><b>AI removes the paperwork barrier</b><span>The UK systems are mostly writing and arithmetic. That is exactly what AI does fastest.</span></div>
-    <div><b>Everyone leaves with the document</b><span>Each win produces a finished card, label, checklist or message they use the next morning.</span></div>
+  <span class="eyebrow">Facilitator pack · 60-minute session · Nigerian bakers</span>
+  <h1>Oven to Phone: how UK small businesses use AI, put to work in a Nigerian bakery</h1>
+  <p class="lede">A baker in Lagos and a shop owner in London have the same AI tools on their phones. The difference is the habits. More UK small businesses now treat AI as a trained assistant built into their daily routine, rather than somewhere to ask the odd question. This session teaches five of those habits, each practised on a real bakery task.</p>
+  <div class="stat-line">
+    <div><b>54%</b><span>of UK SMEs now use AI, up sharply in a year (British Chambers of Commerce, 2026)</span></div>
+    <div><b>5.2 hrs</b><span>saved a week on average by UK small businesses that use AI (Opinium for OpenAI, via Enterprise Nation, 2026)</span></div>
+    <div><b>54% · 45% · 31%</b><span>of UK SME adopters use AI for task automation, marketing and customer service</span></div>
   </div>
+  <p class="tip">Your angle as facilitator: "I'm not here to tell you to run your bakery like a UK bakery. Your market is yours. I'm bringing the <em>way</em> UK small businesses work with AI, and we'll put it to work on your oven, your customers and your prices."</p>
 </header>
 
-<section id="counter">
+<section id="shift">
   <div class="stack">
-    <span class="eyebrow">The opening hook</span>
-    <h2>What you see on a UK bakery counter</h2>
-    <p class="lede">Open by walking the room through a UK high-street bakery. Show real photos from your phone if you can. Each thing they see becomes one of the five wins.</p>
+    <span class="eyebrow">The habit shift</span>
+    <h2>Five AI habits that travel</h2>
+    <p class="lede">Put this table on screen in the first five minutes. Each row becomes one of the wins.</p>
   </div>
-  <div class="counter">
-    <div class="tile"><span class="uk">UK counter</span><b>Every product is costed to the penny</b><span class="ng"><strong>Win 1:</strong> the costed recipe card</span></div>
-    <div class="tile"><span class="uk">UK counter</span><b>Every wrapped item has a full label, allergens in bold</b><span class="ng"><strong>Win 2:</strong> the allergen label</span></div>
-    <div class="tile"><span class="uk">UK counter</span><b>A green hygiene rating sticker on the door</b><span class="ng"><strong>Win 3:</strong> the food-safety diary</span></div>
-    <div class="tile"><span class="uk">UK counter</span><b>"Review us on Google" QR code by the till</b><span class="ng"><strong>Win 4:</strong> reviews and reputation</span></div>
-    <div class="tile"><span class="uk">UK counter</span><b>End-of-day surplus bags at a third of the price</b><span class="ng"><strong>Win 5:</strong> the zero-waste close</span></div>
+  <div class="table-wrap">
+    <table class="shift">
+      <thead><tr><th>Occasional AI use</th><th>The habit UK small businesses are building</th><th>Practised in</th></tr></thead>
+      <tbody>
+        <tr><td>"I use AI for captions sometimes"</td><td>Audit the week and hand over the repetitive tasks</td><td>Win 1</td></tr>
+        <tr><td>Starting a fresh chat every time and re-explaining the business</td><td>Build a reusable assistant that already knows the business</td><td>Win 2</td></tr>
+        <tr><td>Typing everything out</td><td>Snap a photo and let AI read it</td><td>Win 3</td></tr>
+        <tr><td>Writing long messages</td><td>Talk to AI and let it write</td><td>Win 4</td></tr>
+        <tr><td>Deciding by feel</td><td>Feed AI your own numbers and ask what they say</td><td>Win 5</td></tr>
+      </tbody>
+    </table>
   </div>
-  <p class="tip"><strong>Before you fly:</strong> photograph a Greggs or local bakery label, a Food Hygiene Rating sticker, a Too Good To Go bag and a "review us" QR code. Real photos from your own UK visits will land better than any slide.</p>
+</section>
+
+<section id="formula">
+  <div class="stack">
+    <span class="eyebrow">The one skill under all five</span>
+    <h2>The four-part prompt</h2>
+    <p class="lede">Most weak AI answers come from weak questions. UK AI trainers teach a structure like this one. Teach it once, then point back to it in every win.</p>
+  </div>
+  <div class="formula">
+    <div class="part"><span class="k">1 · Who</span><b>Who you are</b><span>"I run a small bakery in Ibadan with 3 staff."</span></div>
+    <div class="part"><span class="k">2 · What</span><b>What you need</b><span>"Work out my cost per loaf."</span></div>
+    <div class="part"><span class="k">3 · Details</span><b>The facts it can't guess</b><span>Recipe, prices, customers, deadlines, rules.</span></div>
+    <div class="part"><span class="k">4 · Shape</span><b>How the answer should look</b><span>"A table. Show your working. Under 100 words. In Pidgin."</span></div>
+  </div>
+  <div class="compare">
+    <div class="prompt"><div class="prompt-label">Weak prompt</div><pre>How much should I sell my bread?</pre></div>
+    <div class="prompt"><div class="prompt-label">Four-part prompt</div><pre>I run a small bakery in Ibadan (who). Work out the right price for my 500g loaf (what). Recipe and what I paid for each ingredient: [...] (details). Give me a table, show your working, and give prices at 30% and 40% margin (shape).</pre></div>
+  </div>
 </section>
 
 <section id="run">
@@ -183,23 +207,23 @@ footer{margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-si
   <div class="ros">
     <div class="bar-scroll">
       <div class="bar" role="img" aria-label="Timeline of the 60 minute session">
-        <div class="seg-open" style="flex:5">UK counter<small>5 min</small></div>
-        <div class="seg-win" style="flex:12">1 · Costed recipe<small>12 min</small></div>
-        <div class="seg-win" style="flex:8">2 · Label<small>8 min</small></div>
-        <div class="seg-win" style="flex:10">3 · Safety diary<small>10 min</small></div>
-        <div class="seg-win" style="flex:10">4 · Reviews<small>10 min</small></div>
-        <div class="seg-win" style="flex:10">5 · Zero waste<small>10 min</small></div>
+        <div class="seg-open" style="flex:5">Habit shift<small>5 min</small></div>
+        <div class="seg-win" style="flex:8">1 · Task audit<small>8 min</small></div>
+        <div class="seg-win" style="flex:12">2 · Own assistant<small>12 min</small></div>
+        <div class="seg-win" style="flex:10">3 · Snap it<small>10 min</small></div>
+        <div class="seg-win" style="flex:10">4 · Talk it<small>10 min</small></div>
+        <div class="seg-win" style="flex:10">5 · Your numbers<small>10 min</small></div>
         <div class="seg-close" style="flex:5">Commit<small>5 min</small></div>
       </div>
     </div>
     <ol>
-      <li><b>0:00–0:05</b><span><strong>The UK counter.</strong> Show the five photos. Ask: "Which of these does your bakery have today?" Most will say none or one.</span></li>
-      <li><b>0:05–0:17</b><span><strong>Win 1, the costed recipe card.</strong> Cost one volunteer's bestseller live on the projector. Everyone then does their own.</span></li>
-      <li><b>0:17–0:25</b><span><strong>Win 2, the allergen label.</strong> Paste the same recipe back in and get a UK-style label in seconds.</span></li>
-      <li><b>0:25–0:35</b><span><strong>Win 3, the food-safety diary.</strong> AI builds opening, closing and cleaning checks modelled on the UK's free Safer Food, Better Business pack.</span></li>
-      <li><b>0:35–0:45</b><span><strong>Win 4, reviews and reputation.</strong> Set up a free Google Business Profile, then practise replying to a glowing review and an angry one.</span></li>
-      <li><b>0:45–0:55</b><span><strong>Win 5, the zero-waste close.</strong> Learn the Greggs surplus-bag idea and run it through WhatsApp. Start a two-week sales notebook so AI can plan baking.</span></li>
-      <li><b>0:55–1:00</b><span><strong>Commit.</strong> Each baker picks the one UK standard they'll have in place within a week and tells the person next to them.</span></li>
+      <li><b>0:00–0:05</b><span><strong>The habit shift.</strong> Show the UK figures and the table above. Ask the room: "Who has used AI this week? For what?" Most answers will be one-off questions or captions.</span></li>
+      <li><b>0:05–0:13</b><span><strong>Win 1, the AI task audit.</strong> Each baker lists their week and AI picks the three tasks to hand over first.</span></li>
+      <li><b>0:13–0:25</b><span><strong>Win 2, your bakery's own assistant.</strong> Build a free Gemini Gem that knows their menu, prices and tone. Every later win runs inside it.</span></li>
+      <li><b>0:25–0:35</b><span><strong>Win 3, snap it, don't type it.</strong> Photograph a recipe or market receipt, and AI turns it into a cost per loaf and a price.</span></li>
+      <li><b>0:35–0:45</b><span><strong>Win 4, talk it, don't type it.</strong> A voice note in Pidgin or English becomes an order confirmation, a staff card or a post.</span></li>
+      <li><b>0:45–0:55</b><span><strong>Win 5, let your numbers talk.</strong> A two-week sales notebook, pasted into AI, shows what to bake less of and what sells.</span></li>
+      <li><b>0:55–1:00</b><span><strong>Commit.</strong> Each baker picks one habit to use every day for the next two weeks and tells the person next to them.</span></li>
     </ol>
   </div>
 </section>
@@ -208,43 +232,26 @@ footer{margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-si
 <section id="win1">
   <article class="win">
     <div class="win-head">
-      <span class="win-num">WIN 1 · 12 MIN</span>
-      <div class="chips"><span class="chip t">ChatGPT</span><span class="chip t">Meta AI in WhatsApp</span><span class="chip">Pricing</span></div>
+      <span class="win-num">WIN 1 · 8 MIN</span>
+      <div class="chips"><span class="chip t">ChatGPT</span><span class="chip t">Gemini</span><span class="chip">Time</span></div>
     </div>
-    <h3>The costed recipe card</h3>
+    <h3>The AI task audit</h3>
     <div class="standard">
-      <div><h4>The UK standard</h4><span>Every product has a written specification: ingredients by weight, yield, finished weight, cost per item and target profit. Prices change when costs change, not when the owner panics.</span></div>
-      <div><h4>The AI shortcut</h4><span>Photograph the recipe notebook and the receipts. AI builds the card and shows what happens when flour goes up again.</span></div>
+      <div><h4>How UK small businesses do it</h4><span>UK AI consultants start with a list of every repeated task in the week, then sort it: what AI can draft, what it can help decide, and what stays human. UK owners still lose about 8 hours a week to admin, and nearly half have never tried to automate any of it.</span></div>
+      <div><h4>In a Nigerian bakery</h4><span>The baker lists a normal week: answering price DMs, writing orders down, costing, posting, briefing staff, chasing deposits. AI names the three tasks to hand over first.</span></div>
     </div>
-    <p class="why">Why it matters in Nigeria: a 50kg bag of flour has moved between roughly ₦55,000 and ₦75,000, and yeast and butter have more than doubled since 2023. Many bakers still price by feel. A written card is also what a hotel or supermarket buyer expects to see behind a quote.</p>
     <div class="prompt">
       <div class="prompt-label">Prompt to copy <button class="copy" type="button">Copy</button></div>
-<pre>I am a baker in [city], Nigeria. Make me a professional recipe specification card, the kind UK bakeries keep for every product.
+<pre>I run a bakery in [city], Nigeria with [number] staff. Here is everything I do in a normal week, and roughly how long each takes:
+[e.g. answering WhatsApp price questions – 1 hr a day; writing down orders; working out prices; posting on Status/Instagram; briefing staff; chasing deposits; buying ingredients]
 
-Product: [name]. The recipe makes [number] pieces:
-[ingredient – quantity in grams, one per line]
-
-What I paid:
-[e.g. 50kg flour ₦70,000; 1kg sugar ₦___; 500g yeast ₦___; butter/margarine ₦___]
-Other costs per batch: gas/diesel/power ₦___, packaging ₦___ per piece, labour ₦___.
-
-On the card include:
-1. Ingredients by weight, yield, and finished weight per piece
-2. Cost of ONE piece in a table
-3. Selling price at 30%, 40% and 50% profit margin
-4. What my cost per piece becomes if flour goes up by ₦10,000 a bag
-5. Three options if costs rise: raise the price, reduce the size, or adjust the recipe, with pros and cons
-Show your working so I can check it with a calculator.</pre>
+Sort these into three groups:
+1. AI can draft it for me
+2. AI can help me decide
+3. Must stay with me or my staff
+Then pick the 3 tasks I should hand to AI first, with how many hours a week each could save. Give me a table.</pre>
     </div>
-    <div class="cost">
-      <h4 class="eyebrow" style="margin:0">What the projector shows · example numbers for one 500g loaf</h4>
-      <div class="cost-row"><span>Flour at ₦70k/bag</span><div class="stackbar"><span class="c-flour" style="width:40.8%"></span><span class="c-other" style="width:28.2%"></span><span class="c-run" style="width:31%"></span></div><span class="val">₦1,030</span></div>
-      <div class="cost-row"><span>Flour at ₦80k/bag</span><div class="stackbar"><span class="c-flour" style="width:44%"></span><span class="c-other" style="width:26.6%"></span><span class="c-run" style="width:29.4%"></span></div><span class="val">₦1,090</span></div>
-      <div class="legend"><span><i class="c-flour"></i>Flour</span><span><i class="c-other"></i>Sugar, fat, yeast, salt, improver</span><span><i class="c-run"></i>Packaging, fuel, labour</span></div>
-      <p class="note">Illustrative figures to demonstrate the method (300g flour per loaf). At a 30% margin the price moves from about ₦1,470 to ₦1,560 when flour goes from ₦70k to ₦80k a bag. Every baker's real numbers will differ. The value is seeing it for their own loaf.</p>
-    </div>
-    <div class="takehome"><b>They leave with</b><span>A spec card for their bestseller, three price options, and a clear number to quote any buyer.</span></div>
-    <p class="tip">Facilitator note: AI makes arithmetic mistakes. "Show your working" is in the prompt so they can check each figure with a calculator, and they should.</p>
+    <div class="takehome"><b>They leave with</b><span>Their own top three tasks to hand to AI, with an estimate of hours saved. The rest of the session works on those tasks.</span></div>
   </article>
 </section>
 
@@ -252,36 +259,35 @@ Show your working so I can check it with a calculator.</pre>
 <section id="win2">
   <article class="win">
     <div class="win-head">
-      <span class="win-num">WIN 2 · 8 MIN</span>
-      <div class="chips"><span class="chip t">ChatGPT</span><span class="chip">Labelling</span><span class="chip">Food safety</span></div>
+      <span class="win-num">WIN 2 · 12 MIN</span>
+      <div class="chips"><span class="chip t">Gemini Gems (free)</span><span class="chip t">ChatGPT custom instructions</span><span class="chip">Set up once</span></div>
     </div>
-    <h3>The allergen label</h3>
+    <h3>Your bakery's own AI assistant</h3>
     <div class="standard">
-      <div><h4>The UK standard</h4><span>Since 2021, Natasha's Law requires food packed on site to carry a full ingredient list with the 14 major allergens highlighted in bold. It applies to a one-person stall the same as to a supermarket.</span></div>
-      <div><h4>The AI shortcut</h4><span>Paste the recipe from Win 1. AI writes the ingredient list in the right order, bolds the allergens, and adds storage and best-before lines.</span></div>
+      <div><h4>How UK small businesses do it</h4><span>Instead of re-explaining the business in every chat, UK firms set up a custom assistant once, with their products, prices, policies and tone of voice. Every answer after that comes out in their style and with their facts.</span></div>
+      <div><h4>In a Nigerian bakery</h4><span>Google's Gemini Gems are free to build. The baker pastes in the template below, and from then on AI answers like a staff member who knows the menu, the prices and the deposit rule.</span></div>
     </div>
-    <p class="why">This isn't only a UK idea. NAFDAC's Bread Regulations also require allergenic ingredients to be named on the label, yet a 2025 study found many Nigerian packaged foods still fall short. A clear label makes a small bakery look like a brand, and it's the first thing a supermarket buyer checks.</p>
+    <div class="meta">
+      <div><h4>Steps</h4><ol><li>Open gemini.google.com in the phone's browser and sign in with a Google account.</li><li>Choose Gems → New Gem. Name it after the bakery.</li><li>Paste the template, fill the brackets, save.</li><li>Test it with: "A customer wants a 2-step cake for Saturday. What do I reply?"</li></ol></div>
+      <div><h4>No Google account?</h4><ul><li>In ChatGPT, go to Settings → Personalisation → Custom instructions and paste a shorter version. Free accounts get about 1,500 characters.</li></ul></div>
+    </div>
     <div class="prompt">
-      <div class="prompt-label">Prompt to copy <button class="copy" type="button">Copy</button></div>
-<pre>Using the recipe above, write a product label for my [product] in the style required by UK Natasha's Law. Include:
-- Product name
-- Full ingredients list in descending order of weight, with any of the 14 major allergens in CAPITALS or bold
-- A "may contain" line if my kitchen also handles [nuts / sesame / eggs, etc.]
-- Net weight
-- Best before: [number] days from baking. Storage instructions.
-- Batch number format I can write by hand
-- My business name, address and phone: [details]
-Keep it short enough to fit a small sticker.</pre>
+      <div class="prompt-label">Assistant instructions to copy <button class="copy" type="button">Copy</button></div>
+<pre>You are the assistant for [bakery name], a bakery in [area, city], Nigeria, run by [owner name].
+
+What we sell and prices: [product – price, one per line]
+Delivery: [areas] for ₦___. Opening hours: [hours].
+Custom cakes: [x] days' notice, [50%] deposit before baking, no refund after baking starts.
+Payment: [transfer / POS / cash].
+
+How to write: warm, respectful and short, like a friendly Nigerian shop owner. Use English unless I ask for Pidgin.
+Rules:
+- Never invent a price or a promise. If a detail is missing, ask me.
+- For any money calculation, show your working.
+- Customer messages should end by asking for the order details or the deposit.</pre>
     </div>
-    <div class="label-mock" aria-label="Example label layout">
-      <span class="ln">Soft Milk Bread · 500g</span>
-      <span><strong>Ingredients:</strong> WHEAT flour, water, sugar, vegetable fat, MILK powder, yeast, salt, flour improver.</span>
-      <span><em>May contain: EGGS, SESAME.</em></span>
-      <div class="row"><span>Best before: 3 days</span><span>Batch: 27/09-A</span></div>
-      <span class="note">Store in a cool, dry place. Example layout only.</span>
-    </div>
-    <div class="takehome"><b>They leave with</b><span>Label text for their bestseller, ready to print on stickers at any business centre.</span></div>
-    <p class="tip">Say clearly: this label raises their standard, but packaged products sold in shops still need NAFDAC registration. Point them to NAFDAC for their specific product.</p>
+    <div class="takehome"><b>They leave with</b><span>An assistant on their phone that already knows their bakery. They can hand it to a staff member or use it for every task on the page.</span></div>
+    <p class="tip">This is the habit that makes the biggest difference. A one-off chat forgets everything, but a set-up assistant gets more useful every week. Remind them to update the prices in the Gem whenever prices change.</p>
   </article>
 </section>
 
@@ -290,27 +296,34 @@ Keep it short enough to fit a small sticker.</pre>
   <article class="win">
     <div class="win-head">
       <span class="win-num">WIN 3 · 10 MIN</span>
-      <div class="chips"><span class="chip t">ChatGPT</span><span class="chip">Hygiene</span><span class="chip">Staff</span></div>
+      <div class="chips"><span class="chip t">Gemini</span><span class="chip t">ChatGPT</span><span class="chip">Pricing</span></div>
     </div>
-    <h3>The food-safety diary</h3>
+    <h3>Snap it, don't type it</h3>
     <div class="standard">
-      <div><h4>The UK standard</h4><span>The Food Standards Agency gives small food businesses a free pack called Safer Food, Better Business: a daily diary of opening checks, closing checks, cleaning and temperatures. Inspectors award a 0–5 hygiene rating that goes on the door. Without a written system, a business can't score above 1.</span></div>
-      <div><h4>The AI shortcut</h4><span>Describe the bakery by voice note. AI writes a one-page daily checklist and cleaning schedule sized for a Nigerian bakery.</span></div>
+      <div><h4>How UK small businesses do it</h4><span>UK firms photograph receipts, invoices and handwritten notes and let software read them into tables, rather than typing them up. Research and summarising is the biggest time-saver UK SMEs report.</span></div>
+      <div><h4>In a Nigerian bakery</h4><span>Photograph the recipe notebook and the last market receipt. AI reads both and works out the real cost per loaf, then what happens when flour goes up again.</span></div>
     </div>
+    <p class="why">Why it lands: a 50kg bag of flour has moved between roughly ₦55,000 and ₦75,000, and yeast and butter have more than doubled since 2023. Many bakers still price by feel. Seeing their own cost per loaf worked out from a photo gets the room's attention.</p>
     <div class="prompt">
-      <div class="prompt-label">Prompt to copy <button class="copy" type="button">Copy</button></div>
-<pre>I run a bakery in [city], Nigeria with [number] staff. We make [products] using [oven type, mixer, etc.]. We have / don't have constant power and a fridge.
+      <div class="prompt-label">Prompt to copy · attach both photos <button class="copy" type="button">Copy</button></div>
+<pre>Photo 1 is my recipe for [product]. It makes [number] pieces. Photo 2 is my latest receipt for ingredients.
+Other costs per batch: gas/diesel/power ₦___, packaging ₦___ per piece, labour ₦___.
 
-Based on the UK Food Standards Agency's "Safer Food, Better Business" approach (the 4 Cs: cleaning, cooking, chilling, cross-contamination), create:
-1. A daily OPENING checklist (tick boxes)
-2. A daily CLOSING checklist (tick boxes)
-3. A weekly cleaning schedule table: what, how often, who
-4. A simple rule card for staff on handwashing, hair covering, illness and allergens
-5. A short WhatsApp Status post telling customers about our hygiene routine
-Keep sentences short. It must fit on one page for the wall.</pre>
+1. Read both photos and put the ingredients, quantities and prices in a table. Ask me if anything is unclear.
+2. Work out the cost of ONE piece.
+3. Give selling prices at 30%, 40% and 50% profit margin.
+4. Show what happens to my cost per piece if flour goes up by ₦10,000 a bag.
+Show your working so I can check it with a calculator.</pre>
     </div>
-    <div class="takehome"><b>They leave with</b><span>A one-page wall checklist, a cleaning rota, and a post that tells customers why their bakery is safer.</span></div>
-    <p class="tip">Make the point: in the UK customers choose the bakery with the 5-star sticker. Nigerian customers are no different. Showing the routine sells.</p>
+    <div class="cost">
+      <h4 class="eyebrow" style="margin:0">What the projector shows · example numbers for one 500g loaf</h4>
+      <div class="cost-row"><span>Flour at ₦70k/bag</span><div class="stackbar"><span class="c-flour" style="width:40.8%"></span><span class="c-other" style="width:28.2%"></span><span class="c-run" style="width:31%"></span></div><span class="val">₦1,030</span></div>
+      <div class="cost-row"><span>Flour at ₦80k/bag</span><div class="stackbar"><span class="c-flour" style="width:44%"></span><span class="c-other" style="width:26.6%"></span><span class="c-run" style="width:29.4%"></span></div><span class="val">₦1,090</span></div>
+      <div class="legend"><span><i class="c-flour"></i>Flour</span><span><i class="c-other"></i>Sugar, fat, yeast, salt, improver</span><span><i class="c-run"></i>Packaging, fuel, labour</span></div>
+      <p class="note">Illustrative figures to demonstrate the method (300g flour per loaf). At a 30% margin the price moves from about ₦1,470 to ₦1,560 when flour goes from ₦70k to ₦80k a bag. Every baker's real numbers will differ.</p>
+    </div>
+    <div class="takehome"><b>They leave with</b><span>A cost-per-piece table for their bestseller and three price options, and the habit of photographing receipts instead of typing them.</span></div>
+    <p class="tip">Facilitator note: AI can misread handwriting and make arithmetic mistakes. That's why the prompt asks it to put the figures in a table first and show its working. Tell them to check both.</p>
   </article>
 </section>
 
@@ -319,27 +332,25 @@ Keep sentences short. It must fit on one page for the wall.</pre>
   <article class="win">
     <div class="win-head">
       <span class="win-num">WIN 4 · 10 MIN</span>
-      <div class="chips"><span class="chip t">Google Business Profile</span><span class="chip t">ChatGPT</span><span class="chip">Reputation</span></div>
+      <div class="chips"><span class="chip t">ChatGPT voice</span><span class="chip t">Gemini</span><span class="chip">Orders</span><span class="chip">Staff</span></div>
     </div>
-    <h3>Reviews and reputation</h3>
+    <h3>Talk it, don't type it</h3>
     <div class="standard">
-      <div><h4>The UK standard</h4><span>A UK bakery lives on its Google reviews. Good owners ask every happy customer for one and reply to every review, good or bad, usually within a day.</span></div>
-      <div><h4>The AI shortcut</h4><span>Set up a free Google Business Profile so they appear on Google Maps. Then AI writes the "please review us" message and drafts calm replies to any review.</span></div>
-    </div>
-    <div class="stat-line">
-      <div><b>97%</b><span>of consumers read reviews before choosing a local business (BrightLocal 2026)</span></div>
-      <div><b>88% vs 47%</b><span>would use a business that replies to all reviews, against one that replies to none</span></div>
+      <div><h4>How UK small businesses do it</h4><span>UK owners dictate emails, record meetings and let AI write up the notes. Emails and business messages are the second-biggest time-saver UK SMEs report.</span></div>
+      <div><h4>In a Nigerian bakery</h4><span>Bakers' hands are in dough, so talking suits them better than typing. ChatGPT's voice mode understands Nigerian Pidgin. A quick spoken note after a phone order becomes a clean written confirmation.</span></div>
     </div>
     <div class="prompt">
-      <div class="prompt-label">Prompt A · asking for reviews <button class="copy" type="button">Copy</button></div>
-<pre>Write a short, warm WhatsApp message I can send the day after a customer collects their order, thanking them and asking them to leave a Google review at [link]. Make it one version in English and one in Pidgin. No pressure, no bribes.</pre>
+      <div class="prompt-label">Prompt A · spoken order to written confirmation <button class="copy" type="button">Copy</button></div>
+<pre>I'm going to describe a cake order I just took on the phone. Turn it into:
+1. A clear order summary for the customer to reply "CONFIRM" to, including date, size, flavour, the exact spelling of any name on the cake, delivery or pickup, price and deposit
+2. A short production note for my staff
+If I forgot any detail, list it at the end so I can ask the customer.</pre>
     </div>
     <div class="prompt">
-      <div class="prompt-label">Prompt B · replying to a bad review <button class="copy" type="button">Copy</button></div>
-<pre>A customer left this review: "[paste review]". Write a calm, professional public reply, the way a good UK bakery would. Thank them, don't argue, take responsibility where it's fair, and invite them to message me on [number] to put it right. Under 80 words.</pre>
+      <div class="prompt-label">Prompt B · spoken process to a staff card <button class="copy" type="button">Copy</button></div>
+<pre>I'll describe how we make [product] out loud. Turn it into a one-page step-by-step card for a new apprentice, with target weights, times and temperatures, and a short hygiene checklist at the bottom. Use short, simple sentences.</pre>
     </div>
-    <div class="takehome"><b>They leave with</b><span>A Google Business Profile started, a review-request message, and a template for handling complaints in public.</span></div>
-    <p class="tip">Google Business Profile is free and works in Nigeria. Verification can take a few days, so they start it in the room and finish it at home.</p>
+    <div class="takehome"><b>They leave with</b><span>An order-confirmation habit that stops wrong-name cakes and no-shows, and a way to write staff instructions without writing.</span></div>
   </article>
 </section>
 
@@ -348,65 +359,64 @@ Keep sentences short. It must fit on one page for the wall.</pre>
   <article class="win">
     <div class="win-head">
       <span class="win-num">WIN 5 · 10 MIN</span>
-      <div class="chips"><span class="chip t">ChatGPT</span><span class="chip t">WhatsApp</span><span class="chip">Waste</span></div>
+      <div class="chips"><span class="chip t">ChatGPT</span><span class="chip t">Gemini</span><span class="chip">Waste</span><span class="chip">Planning</span></div>
     </div>
-    <h3>The zero-waste close</h3>
+    <h3>Let your numbers talk</h3>
     <div class="standard">
-      <div><h4>The UK standard</h4><span>Greggs sells end-of-day surplus as "Magic Bags" through Too Good To Go at about a third of the price, and passed six million bags in 2026. UK bakeries also use AI forecasting: Foodforecast reports about 30% fewer unsold returns.</span></div>
-      <div><h4>The AI shortcut</h4><span>Too Good To Go isn't in Nigeria, but WhatsApp Status is. AI writes a daily "surprise bag" offer, and a simple notebook lets AI forecast how much to bake.</span></div>
+      <div><h4>How UK small businesses do it</h4><span>UK firms paste their sales figures into AI and ask what the numbers show. UK bakeries use AI forecasting to decide how much to bake; one provider, Foodforecast, reports about 30% fewer unsold returns.</span></div>
+      <div><h4>In a Nigerian bakery</h4><span>No software needed. A notebook with baked, sold and left over each day for two weeks is enough data for AI to spot the patterns.</span></div>
     </div>
     <div class="prompt">
-      <div class="prompt-label">Prompt A · the surprise bag <button class="copy" type="button">Copy</button></div>
-<pre>At the end of each day I have leftover [bread, buns, cakes]. Help me copy the UK "Too Good To Go" idea using WhatsApp. Suggest:
-1. A name for my end-of-day surprise bag
-2. What goes in it and a price (about a third of normal)
-3. Three WhatsApp Status messages to post at [time] each day
-4. Simple rules so it doesn't hurt my full-price sales</pre>
+      <div class="prompt-label">Prompt to copy · after two weeks of notes <button class="copy" type="button">Copy</button></div>
+<pre>Here are my last 14 days for each product: [day – product – baked – sold – left over].
+
+1. Which days am I over-baking, and which days am I running out?
+2. How many of each should I bake on each day of the week next week?
+3. Which product earns me the most, and which should I think about dropping?
+4. Suggest one way to sell leftovers at the end of the day without hurting full-price sales.
+Explain it simply and show a table.</pre>
     </div>
-    <div class="prompt">
-      <div class="prompt-label">Prompt B · after two weeks of notes <button class="copy" type="button">Copy</button></div>
-<pre>Here are my last 14 days: [day – baked – sold – left over]. Which days am I over-baking or running out? How many should I bake each day of the week next week? Explain it simply.</pre>
-    </div>
-    <div class="takehome"><b>They leave with</b><span>A named surplus-bag offer to post tonight, and a two-week notebook habit that lets AI cut their waste.</span></div>
+    <div class="takehome"><b>They leave with</b><span>A two-week notebook template to start tomorrow, and a prompt that turns it into a baking plan.</span></div>
+    <p class="tip">In the room, use a made-up two-week list on the projector so they can see the output now. Their own numbers come in two weeks, which is also a good reason for a follow-up WhatsApp group.</p>
   </article>
 </section>
 
 <section id="bonus">
   <div class="stack">
     <span class="eyebrow">Take-home extras</span>
-    <h2>Six more UK habits for the handout</h2>
-    <p class="lede">These don't fit in the 60 minutes, but they're easy to follow alone at home. Put them on the back of the handout.</p>
+    <h2>Six more habits for the handout</h2>
+    <p class="lede">Each one is another way UK small businesses work with AI, shown on a bakery task. Put them on the back of the handout.</p>
   </div>
   <div class="grid2">
     <div class="bonus">
-      <h3>Written order terms</h3>
-      <p>UK cake makers put deposits, cancellation and allergy rules in writing before they bake. AI writes them and a "reply CONFIRM" message.</p>
-      <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>Write simple terms and conditions for my custom cake orders, like a UK cake business would: deposit of [50%], notice needed, cancellation and refund rules, allergy responsibility, delivery. Then write an order summary message the customer must reply "CONFIRM" to.</pre></div>
+      <h3>Keep a prompt library</h3>
+      <p>UK teams save prompts that work and reuse them. On WhatsApp, "Message yourself" makes a free prompt library: save every prompt from this session there.</p>
+      <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>Here's a prompt that worked well for me: [paste]. Turn it into a reusable template with [brackets] for the parts I'll change each time.</pre></div>
     </div>
     <div class="bonus">
-      <h3>A WhatsApp shop that answers itself</h3>
-      <p>The free WhatsApp Business app can send a greeting, an away message and quick replies like <code>/price</code>. AI writes them all.</p>
-      <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>I run [bakery] in [area]. I sell [products with prices], deliver to [areas] for ₦___, open [hours]. Write my WhatsApp Business greeting message, away message, and quick replies for /menu /price /order /deposit /delivery /thanks.</pre></div>
+      <h3>Draft first, you approve</h3>
+      <p>UK businesses let AI draft customer replies but a person checks and sends them. Use this to fill the WhatsApp Business greeting, away message and quick replies.</p>
+      <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>Using what you know about my bakery, write my WhatsApp Business greeting message, away message, and quick replies for /menu /price /order /deposit /delivery /thanks.</pre></div>
     </div>
     <div class="bonus">
-      <h3>A photo coach, not a fake cake</h3>
-      <p>AI reviews their product photo and gives three phone-only tips. ChatGPT's voice mode understands Pidgin, so they can describe the cake out loud and get captions back.</p>
-      <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>This is a photo of my [product]. Give me 3 ways to make my next photo better using only my phone: light, angle, background. Then write 3 captions, one in Pidgin, ending with "Order on WhatsApp: [number]".</pre></div>
-    </div>
-    <div class="bonus">
-      <h3>Customer service practice</h3>
-      <p>AI plays a customer who asks for "last price" or complains about a late cake, then scores the reply. It's good training for new counter staff.</p>
+      <h3>Rehearse the hard conversations</h3>
+      <p>UK sales teams practise with AI before difficult calls. AI plays the customer who wants "last price" and then scores the reply.</p>
       <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>Role-play a Nigerian customer who wants a big discount on a birthday cake and wants to pay after delivery. One message at a time. After 6 messages, score me out of 10 on holding my price, getting a deposit and staying friendly.</pre></div>
     </div>
     <div class="bonus">
-      <h3>A 90-day selling calendar</h3>
-      <p>UK bakeries plan seasonal ranges months ahead. AI lists every occasion coming up and the day to start promoting it.</p>
+      <h3>Get a second opinion</h3>
+      <p>For big decisions, careful UK users ask two different AIs and compare. Try ChatGPT and Gemini on a price rise or a new oven purchase.</p>
+      <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>I'm deciding whether to [raise my bread price by ₦___ / buy a new oven for ₦___]. Give me the strongest case for, the strongest case against, and 3 questions I should answer before I decide.</pre></div>
+    </div>
+    <div class="bonus">
+      <h3>Plan the season ahead</h3>
+      <p>AI lists every occasion coming up with a product to push and the day to start promoting it, so they can buy flour and packaging early.</p>
       <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>Today is [date]. I sell [products] in [city], Nigeria. Make a 90-day table: Occasion | Date | Product to push | Day to start promoting | Post idea. Include public holidays, festivals, school dates, weddings and office parties.</pre></div>
     </div>
     <div class="bonus">
-      <h3>A training card for every new staff member</h3>
-      <p>UK bakeries induct staff with written steps. They describe a process by voice note and AI turns it into a one-page card.</p>
-      <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>I'll describe how we make [product]. Turn it into a one-page step-by-step training card for a new apprentice, including target weights and times, and the hygiene rules they must follow.</pre></div>
+      <h3>A photo coach, not a fake cake</h3>
+      <p>AI reviews a product photo and gives phone-only tips, then writes captions. It improves the photo, never the cake.</p>
+      <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>This is a photo of my [product]. Give me 3 ways to make my next photo better using only my phone: light, angle, background. Then write 3 captions, one in Pidgin, ending with "Order on WhatsApp: [number]".</pre></div>
     </div>
   </div>
 </section>
@@ -420,10 +430,10 @@ Keep sentences short. It must fit on one page for the wall.</pre>
     <table>
       <thead><tr><th>Tool</th><th>Best for</th><th>Why bakers like it</th><th>Watch out for</th></tr></thead>
       <tbody>
-        <tr><td>ChatGPT (free app)</td><td>Recipe cards, labels, checklists, forecasting</td><td>Reads photos of handwritten recipes. Voice mode understands Nigerian Pidgin.</td><td>The free tier has daily limits. Check every sum.</td></tr>
-        <tr><td>Meta AI in WhatsApp</td><td>Quick captions and questions</td><td>Already on their phone and available in Nigeria (English). No new app.</td><td>Keep AI chats separate from customer chats.</td></tr>
-        <tr><td>Google Business Profile</td><td>Maps listing and reviews</td><td>Free. The same tool every UK bakery uses to be found.</td><td>Verification can take a few days.</td></tr>
-        <tr><td>Canva</td><td>Printing labels, checklists and price boards</td><td>Free templates. Paste AI text in and print at a business centre.</td><td>Needs more data. Download designs on Wi-Fi.</td></tr>
+        <tr><td>Gemini (with Gems)</td><td>The bakery assistant, planning, reading photos</td><td>Gems are free to build and remember the business details.</td><td>Build the Gem in the browser. It then works in the app.</td></tr>
+        <tr><td>ChatGPT (free app)</td><td>Voice notes, photo reading, costing, role-play</td><td>Voice mode understands Nigerian Pidgin. Custom instructions remember basic business details.</td><td>The free tier has daily limits. Check every sum.</td></tr>
+        <tr><td>Meta AI in WhatsApp</td><td>Quick questions and captions</td><td>Already on their phone and available in Nigeria (English).</td><td>Keep AI chats separate from customer chats.</td></tr>
+        <tr><td>WhatsApp Business app</td><td>Where the AI drafts get used</td><td>Free greeting, away message, quick replies and catalogue.</td><td>A person should still read and send each customer reply.</td></tr>
       </tbody>
     </table>
   </div>
@@ -435,11 +445,11 @@ Keep sentences short. It must fit on one page for the wall.</pre>
     <h2>Five rules to say out loud before they leave</h2>
   </div>
   <div class="rules">
-    <div class="rule"><b>Check the maths</b><span>AI makes arithmetic mistakes. Ask it to show its working, then check with a calculator.</span></div>
-    <div class="rule"><b>AI drafts, the law decides</b><span>Labels and hygiene checklists raise your standard. For NAFDAC registration, follow NAFDAC's own rules.</span></div>
-    <div class="rule"><b>Show the standard</b><span>Put the label on the pack, the checklist on the wall and the review link by the till. Customers trust what they can see.</span></div>
-    <div class="rule"><b>Protect customer details</b><span>Don't paste customers' phone numbers, addresses or bank details into AI.</span></div>
+    <div class="rule"><b>AI drafts, you decide</b><span>Read everything before it goes to a customer. The name on the message is yours.</span></div>
+    <div class="rule"><b>Check the maths</b><span>Ask AI to show its working, then check it with a calculator.</span></div>
+    <div class="rule"><b>Protect customer details</b><span>Nigeria's Data Protection Act 2023 covers customer data. Don't paste phone numbers, addresses or bank details into AI.</span></div>
     <div class="rule"><b>Never fake the cake</b><span>Improve the photo, not the product. Only post what you actually baked.</span></div>
+    <div class="rule"><b>One habit at a time</b><span>Pick one habit and use it daily for two weeks before adding the next.</span></div>
   </div>
 </section>
 
@@ -450,31 +460,33 @@ Keep sentences short. It must fit on one page for the wall.</pre>
   </div>
   <div class="prompt">
     <div class="prompt-label">Message to broadcast <button class="copy" type="button">Copy</button></div>
-<pre>Hello bakers! 🍞 Looking forward to our session on [date]: "UK bakery standards, made easy with AI".
+<pre>Hello bakers! 🍞 Looking forward to our AI session on [date].
 
 Please come with:
 1. A charged phone with data
-2. WhatsApp updated to the latest version
-3. The free ChatGPT app installed (search "ChatGPT" in Play Store or App Store)
-4. The recipe for your best-selling product, with the weight of each ingredient and what you paid for it
+2. The free ChatGPT app installed, and a Google account (for Gemini)
+3. A photo of the recipe for your best-selling product
+4. A photo of your last receipt for flour, sugar or other ingredients
+5. A list of what you do in a normal week in your bakery
 
-You'll go home with a costed recipe card, a proper product label, a hygiene checklist for your wall, and a plan to cut waste. See you there!</pre>
+You'll go home with your own AI assistant that knows your bakery, a real cost price for your bestseller, and three tasks you can hand to AI straight away. See you there!</pre>
   </div>
-  <p class="tip">Room tips: pair bakers who don't have data with someone who does. Mirror one phone to the projector so the room follows each step. Use one volunteer's real recipe for Wins 1 and 2, because the label builds on the same recipe.</p>
+  <p class="tip">Room tips: pair bakers who don't have data with someone who does. Mirror one phone to the projector so the room follows each step. Set up your own demo Gem for a made-up bakery before the day, so Win 2 runs smoothly even if the venue Wi-Fi is slow.</p>
 </section>
 
 <section id="sources" class="sources">
   <h3>Sources</h3>
   <ul>
-    <li><a href="https://forkto.com/blog/natashas-law-ppds-allergen-labelling-guide" target="_blank" rel="noopener">Forkto: Natasha's Law PPDS allergen labelling guide (2026)</a></li>
-    <li><a href="https://allergenchecker.co.uk/industry-news/what-natasha-s-law-means-for-small-business-bakers-and-cake-makers" target="_blank" rel="noopener">Allergen Checker: What Natasha's Law means for small bakers</a></li>
-    <li><a href="https://www.nafdac.gov.ng/wp-content/uploads/Files/Resources/Regulations/Draft_Regulations_2023/Bread-Regulations-2023.pdf" target="_blank" rel="noopener">NAFDAC: Bread Regulations 2023 (draft)</a></li>
-    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12414953/" target="_blank" rel="noopener">NigeFE study: compliance of Nigerian pre-packaged foods with labelling guidelines</a></li>
-    <li><a href="https://sfbb.org.uk/" target="_blank" rel="noopener">Safer Food, Better Business</a> and <a href="https://eastcambs.gov.uk/environmental-health/food-safety/food-businesses/safer-food-better-business" target="_blank" rel="noopener">East Cambs Council on SFBB and hygiene ratings</a></li>
-    <li><a href="https://www.grocerygazette.co.uk/2026/04/23/too-good-to-go-and-greggs/" target="_blank" rel="noopener">Grocery Gazette: Too Good To Go and Greggs reach 6m meals (Apr 2026)</a></li>
-    <li><a href="https://corporate.greggs.co.uk/news/too-good-to-go" target="_blank" rel="noopener">Greggs: Too Good To Go partnership</a></li>
+    <li><a href="https://www.staffingindustry.com/news/global-daily-news/ai-adoption-among-uk-smes-climbs-to-54-in-2026" target="_blank" rel="noopener">Staffing Industry Analysts: AI adoption among UK SMEs climbs to 54% (BCC/Atos, 2026)</a></li>
+    <li><a href="https://www.simplybusiness.co.uk/knowledge/business-news/small-business-ai-usage-doubles/" target="_blank" rel="noopener">Simply Business: AI use among UK small businesses more than doubles</a></li>
+    <li><a href="https://www.hoursback.co.uk/blog/uk-small-business-ai-statistics-2026" target="_blank" rel="noopener">HoursBack: UK small business AI statistics 2026</a></li>
+    <li><a href="https://www.aiworkforce.co.uk/blogs/uk-smes-saving-half-day-week-with-ai" target="_blank" rel="noopener">AI Workforce: UK SMEs report 5.2 hours saved a week</a></li>
+    <li><a href="https://heybrb.ai/blog/75-of-uk-small-business-owners-have-tried-ai-theyre-still-losing-10-working-weeks-a-year-to-admin" target="_blank" rel="noopener">HeyBRB: UK small businesses still losing 10 working weeks a year to admin</a></li>
+    <li><a href="https://yougov.com/en-gb/articles/52730-we-polled-uk-sme-leaders-about-ai-adoption-heres-what-they-said" target="_blank" rel="noopener">YouGov: UK SME leaders on AI adoption</a></li>
+    <li><a href="https://tomsguide.com/ai/google-gemini-gems-now-available-to-all-users-without-a-subscription" target="_blank" rel="noopener">Tom's Guide: Gemini Gems free for all users</a></li>
+    <li><a href="https://findskill.ai/blog/custom-instructions-guide/" target="_blank" rel="noopener">FindSkill: custom instructions in ChatGPT, Claude and Gemini</a></li>
     <li><a href="https://bakeryinfo.co.uk/partner-features/ultra-fresh-over-produced-under-planned-why-ai-is-changing-bakery-forecasting-for-good/718568.article" target="_blank" rel="noopener">British Baker: why AI is changing bakery forecasting</a></li>
-    <li><a href="https://www.brightlocal.com/research/local-consumer-review-survey-2025/" target="_blank" rel="noopener">BrightLocal: Local Consumer Review Survey</a> and <a href="https://wiserreview.com/blog/online-review-statistics/" target="_blank" rel="noopener">WiserReview: online review statistics 2026</a></li>
+    <li><a href="https://securiti.ai/overview-of-nigeria-data-protection-act/" target="_blank" rel="noopener">Securiti: overview of Nigeria's Data Protection Act 2023</a></li>
     <li><a href="https://allafrica.com/stories/202512180129.html" target="_blank" rel="noopener">allAfrica: no significant drop in flour price (Dec 2025)</a></li>
     <li><a href="https://nairametrics.com/2024/05/04/bread-prices-rise-as-bakers-grapple-with-over-100-jump-in-input-costs/" target="_blank" rel="noopener">Nairametrics: bakers face over 100% jump in input costs</a></li>
     <li><a href="https://techpoint.africa/news/meta-ai-enables-google-bing-searches/" target="_blank" rel="noopener">Techpoint Africa: Meta AI on WhatsApp in Africa</a></li>
@@ -482,7 +494,7 @@ You'll go home with a costed recipe card, a proper product label, a hygiene chec
   </ul>
 </section>
 
-<footer>Prices change fast. Check today's flour, yeast and butter prices in your market before the session and use them in the Win 1 demo.</footer>
+<footer>Prices and app features change fast. Before the session, check today's flour prices in your market and walk through each step once on your own phone.</footer>
 </div>
 
 <script>
