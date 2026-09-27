@@ -1,0 +1,454 @@
+<title>Oven to Phone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F6F7F3; --surface:#FFFFFF; --ink:#1B211C; --muted:#5A645C; --line:#DCE1D9;
+  --green:#0E6B45; --green-soft:#E3F1E9; --gold:#C98A12; --gold-soft:#FBF0D6;
+  --crust:#8A4B22; --crust-soft:#F3E4D8; --prompt-bg:#F0F3EE;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#121613; --surface:#1A201B; --ink:#E9EEE8; --muted:#A2ADA3; --line:#2E372F;
+    --green:#4CC08A; --green-soft:#17301F; --gold:#E8B24A; --gold-soft:#33280F;
+    --crust:#E09A6A; --crust-soft:#34231A; --prompt-bg:#202722;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121613; --surface:#1A201B; --ink:#E9EEE8; --muted:#A2ADA3; --line:#2E372F;
+  --green:#4CC08A; --green-soft:#17301F; --gold:#E8B24A; --gold-soft:#33280F;
+  --crust:#E09A6A; --crust-soft:#34231A; --prompt-bg:#202722;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:980px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);line-height:1.12;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.25rem;font-weight:700}
+p{margin:0}
+.eyebrow{font:600 .75rem/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.lede{font-size:1.15rem;color:var(--muted);max-width:62ch}
+section{padding-block:48px 8px;display:grid;gap:20px}
+.stack{display:grid;gap:12px}
+a{color:var(--green)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* hero */
+header{padding-block:48px 8px;display:grid;gap:18px}
+.thesis{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:8px}
+.thesis div{border-top:3px solid var(--green);padding-top:10px}
+.thesis b{display:block;font-family:var(--display);font-size:1.05rem}
+.thesis span{color:var(--muted);font-size:.95rem}
+
+/* run of show */
+.ros{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:16px}
+.bar-scroll{overflow-x:auto}
+.bar{display:flex;min-width:620px;height:62px;border-radius:8px;overflow:hidden;font-size:.8rem;font-weight:600}
+.bar div{display:flex;flex-direction:column;justify-content:center;padding:0 8px;border-right:2px solid var(--surface);line-height:1.2}
+.bar small{font-weight:500;opacity:.85;font-variant-numeric:tabular-nums}
+.seg-open{background:var(--crust-soft);color:var(--crust)}
+.seg-win{background:var(--green-soft);color:var(--green)}
+.seg-close{background:var(--gold-soft);color:var(--gold)}
+.ros ol{margin:0;padding-left:0;list-style:none;display:grid;gap:8px}
+.ros li{display:grid;grid-template-columns:86px 1fr;gap:12px;border-top:1px solid var(--line);padding-top:8px}
+.ros li b{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600}
+
+/* wins */
+.win{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:16px}
+.win-head{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:baseline;justify-content:space-between}
+.win-num{font-family:var(--display);font-weight:800;color:var(--green);font-size:.95rem;letter-spacing:.04em}
+.promise{font-size:1.08rem;max-width:62ch}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--prompt-bg);color:var(--muted);border:1px solid var(--line)}
+.chip.t{background:var(--green-soft);color:var(--green);border-color:transparent}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.meta h4{margin:0 0 4px;font:700 .75rem/1.2 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.meta ul,.meta ol{margin:0;padding-left:1.15em}
+.meta li+li{margin-top:4px}
+.why{color:var(--muted);font-size:.97rem}
+.prompt{position:relative;background:var(--prompt-bg);border-radius:10px;border:1px solid var(--line)}
+.prompt-label{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid var(--line);font:600 .75rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.prompt pre{margin:0;padding:14px;white-space:pre-wrap;word-break:break-word;font:13.5px/1.55 var(--mono);color:var(--ink)}
+.copy{font:600 .78rem var(--body);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 10px;cursor:pointer;text-transform:none;letter-spacing:0}
+.copy:hover{border-color:var(--green);color:var(--green)}
+.takehome{background:var(--gold-soft);border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:flex-start}
+.takehome b{color:var(--gold);font-family:var(--display);white-space:nowrap}
+.tip{border-left:3px solid var(--crust);padding-left:12px;color:var(--muted);font-size:.95rem}
+
+/* costing visual */
+.cost{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:14px}
+.cost-row{display:grid;grid-template-columns:120px 1fr 90px;gap:10px;align-items:center;font-size:.9rem}
+.cost-row .val{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.stackbar{display:flex;height:26px;border-radius:5px;overflow:hidden}
+.stackbar span{display:block;height:100%;border-right:1px solid var(--surface)}
+.c-flour{background:var(--crust)} .c-other{background:var(--gold)} .c-run{background:var(--green)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.85rem;color:var(--muted)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.note{font-size:.85rem;color:var(--muted)}
+
+/* bonus grid */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.bonus{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:10px;align-content:start}
+.bonus p{color:var(--muted);font-size:.95rem}
+
+/* tools table */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.93rem}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 .75rem/1.2 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--prompt-bg)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700;white-space:nowrap}
+
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;counter-reset:r}
+.rule{border-top:2px solid var(--ink);padding-top:10px}
+.rule b{display:block;font-family:var(--display);font-size:1.05rem;margin-bottom:2px}
+.rule span{color:var(--muted);font-size:.95rem}
+
+.sources{font-size:.9rem;color:var(--muted)}
+.sources ul{padding-left:1.1em;margin:0;display:grid;gap:4px}
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:16px;font-size:.85rem;color:var(--muted)}
+@media (max-width:520px){
+  .ros li{grid-template-columns:1fr;gap:2px}
+  .cost-row{grid-template-columns:90px 1fr 70px;font-size:.82rem}
+  .win{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">Facilitator pack · 60-minute session · Nigerian bakers</span>
+  <h1>Oven to Phone: five AI wins a baker can use before the next batch</h1>
+  <p class="lede">Every exercise here runs on the phone already in their pocket, using free tools. Each one ends with something real they keep: a true cost per loaf, a WhatsApp shop that answers itself, a week of posts, a firmer reply to "last price?", and a selling calendar.</p>
+  <div class="thesis">
+    <div><b>No new app to learn</b><span>WhatsApp (Meta AI) and the free ChatGPT app. Nothing to buy, no chatbot to build.</span></div>
+    <div><b>Money problems first</b><span>Flour, yeast and butter prices keep climbing. Start with the problem they already lose sleep over.</span></div>
+    <div><b>Everyone leaves with output</b><span>Each win produces a finished item they can use tomorrow morning, not just notes.</span></div>
+  </div>
+</header>
+
+<section id="run">
+  <div class="stack">
+    <span class="eyebrow">Run of show</span>
+    <h2>How the 60 minutes break down</h2>
+  </div>
+  <div class="ros">
+    <div class="bar-scroll">
+      <div class="bar" role="img" aria-label="Timeline of the 60 minute session">
+        <div class="seg-open" style="flex:5">Hook<small>5 min</small></div>
+        <div class="seg-win" style="flex:12">1 · Price shock<small>12 min</small></div>
+        <div class="seg-win" style="flex:10">2 · WhatsApp shop<small>10 min</small></div>
+        <div class="seg-win" style="flex:10">3 · Photo to post<small>10 min</small></div>
+        <div class="seg-win" style="flex:10">4 · "Last price?"<small>10 min</small></div>
+        <div class="seg-win" style="flex:8">5 · Calendar<small>8 min</small></div>
+        <div class="seg-close" style="flex:5">Commit<small>5 min</small></div>
+      </div>
+    </div>
+    <ol>
+      <li><b>0:00–0:05</b><span><strong>Hook.</strong> Ask for a show of hands: "Who knows exactly how much one loaf costs you to make, to the naira?" Few hands go up, and that sets up Win 1.</span></li>
+      <li><b>0:05–0:17</b><span><strong>Win 1, the Price Shock Calculator.</strong> Pick one volunteer's bestseller and cost it live on the projector. Everyone then does their own.</span></li>
+      <li><b>0:17–0:27</b><span><strong>Win 2, the WhatsApp shop that answers itself.</strong> AI writes the greeting, away message and quick replies, and they paste them into WhatsApp Business in the room.</span></li>
+      <li><b>0:27–0:37</b><span><strong>Win 3, Photo to post.</strong> They snap a product, send it to AI, and speak a voice note in Pidgin or English. They get captions plus photo coaching.</span></li>
+      <li><b>0:37–0:47</b><span><strong>Win 4, the "Last price?" sparring partner.</strong> AI plays a stubborn customer and then scores their reply. This is the loud, fun part of the session.</span></li>
+      <li><b>0:47–0:55</b><span><strong>Win 5, the 90-day selling calendar.</strong> AI lists every coming occasion with a product and a start date for promoting it.</span></li>
+      <li><b>0:55–1:00</b><span><strong>Commit.</strong> Each baker picks one win to finish tonight and tells the person next to them which one.</span></li>
+    </ol>
+  </div>
+  <p class="tip"><strong>Before the day:</strong> send the WhatsApp message at the bottom of this page. Ask them to install ChatGPT, update WhatsApp, and bring the recipe and ingredient prices for their best-selling product. That one request makes Win 1 work.</p>
+</section>
+
+<!-- WIN 1 -->
+<section id="win1">
+  <article class="win">
+    <div class="win-head">
+      <span class="win-num">WIN 1 · 12 MIN</span>
+      <div class="chips"><span class="chip t">ChatGPT</span><span class="chip t">Meta AI in WhatsApp</span><span class="chip">Pricing</span></div>
+    </div>
+    <h3>The Price Shock Calculator</h3>
+    <p class="promise">Turn a recipe notebook into a true cost per loaf, a safe selling price, and a plan for the next time flour goes up.</p>
+    <p class="why">Why it works in Nigeria: a 50kg bag of flour has moved between roughly ₦55,000 and ₦75,000 depending on brand and location, and yeast and butter have more than doubled since 2023. Many bakers change prices by feel. This exercise replaces guessing with a number.</p>
+    <div class="meta">
+      <div><h4>When to use it</h4><ul><li>Any time an ingredient price changes</li><li>Before quoting a big order (wedding, office, school)</li><li>When deciding between a price rise and a smaller loaf</li></ul></div>
+      <div><h4>Steps</h4><ol><li>Photograph or type the recipe and batch size.</li><li>Add what they paid for each ingredient.</li><li>Paste the prompt and fill in the brackets.</li></ol></div>
+    </div>
+    <div class="prompt">
+      <div class="prompt-label">Prompt to copy <button class="copy" type="button">Copy</button></div>
+<pre>I am a baker in [city], Nigeria. My recipe for [product] makes [number] pieces:
+[ingredient – quantity, one per line]
+
+What I paid:
+[e.g. 50kg flour ₦70,000; 1kg sugar ₦___; 500g yeast ₦___; butter/margarine ₦___]
+
+Other costs per batch: gas/diesel/power ₦___, packaging ₦___ per piece, labour ₦___.
+
+1. Work out the cost of ONE piece in a simple table.
+2. Give me the selling price at 30%, 40% and 50% profit margin.
+3. Show what happens to my cost per piece if flour goes up by ₦10,000 a bag.
+4. Compare 3 options: raise the price, make the piece smaller, or adjust the recipe. List the pros and cons of each.
+Show your working so I can check it with a calculator.</pre>
+    </div>
+    <div class="prompt">
+      <div class="prompt-label">Follow-up prompt <button class="copy" type="button">Copy</button></div>
+<pre>Now write a short, respectful WhatsApp broadcast telling my regular customers about the new price. Write one version in simple English and one in Nigerian Pidgin. Thank them, explain the flour increase in one line, and don't sound like I'm begging.</pre>
+    </div>
+    <div class="cost">
+      <h4 class="eyebrow" style="margin:0">What the projector shows · example numbers for one 500g loaf</h4>
+      <div class="cost-row"><span>Flour at ₦70k/bag</span><div class="stackbar"><span class="c-flour" style="width:40.8%"></span><span class="c-other" style="width:28.2%"></span><span class="c-run" style="width:31%"></span></div><span class="val">₦1,030</span></div>
+      <div class="cost-row"><span>Flour at ₦80k/bag</span><div class="stackbar"><span class="c-flour" style="width:44%"></span><span class="c-other" style="width:26.6%"></span><span class="c-run" style="width:29.4%"></span></div><span class="val">₦1,090</span></div>
+      <div class="legend"><span><i class="c-flour"></i>Flour</span><span><i class="c-other"></i>Sugar, fat, yeast, salt, improver</span><span><i class="c-run"></i>Packaging, fuel, labour</span></div>
+      <p class="note">Illustrative figures to demonstrate the method (300g flour per loaf). At a 30% margin the price moves from about ₦1,470 to ₦1,560 when flour goes from ₦70k to ₦80k a bag. Every baker's real numbers will differ. The value is seeing it for their own loaf.</p>
+    </div>
+    <div class="takehome"><b>They leave with</b><span>A cost-per-piece table for their bestseller, three price options, and a ready-to-send price-change message.</span></div>
+    <p class="tip">Facilitator note: tell the room that AI makes arithmetic mistakes. The line "Show your working" is there so they can check each figure with a calculator, and they should.</p>
+  </article>
+</section>
+
+<!-- WIN 2 -->
+<section id="win2">
+  <article class="win">
+    <div class="win-head">
+      <span class="win-num">WIN 2 · 10 MIN</span>
+      <div class="chips"><span class="chip t">ChatGPT</span><span class="chip t">WhatsApp Business app</span><span class="chip">Customer service</span></div>
+    </div>
+    <h3>The WhatsApp shop that answers itself</h3>
+    <p class="promise">Skip the ₦900,000 chatbot. AI writes everything the free WhatsApp Business app already knows how to send automatically.</p>
+    <p class="why">Most Nigerian bakery orders already arrive by WhatsApp DM. The free WhatsApp Business app has a greeting message, an away message, quick replies (type <code>/price</code> and the whole price list appears) and a catalogue. Most bakers never fill them in because writing them feels like work, so AI does the writing.</p>
+    <div class="meta">
+      <div><h4>When to use it</h4><ul><li>Once to set up, then again whenever prices or menu change</li><li>Before festive rushes, when DMs pile up</li></ul></div>
+      <div><h4>Steps</h4><ol><li>Run the prompt.</li><li>WhatsApp Business → Settings → Business tools.</li><li>Paste into Greeting, Away and Quick replies. Add 3 products to the Catalogue.</li></ol></div>
+    </div>
+    <div class="prompt">
+      <div class="prompt-label">Prompt to copy <button class="copy" type="button">Copy</button></div>
+<pre>I run [bakery name] in [area, city]. I sell [products with prices]. I deliver to [areas] for ₦___. Opening hours: [hours]. Custom cakes need [x] days' notice and a [50%] deposit. Payment: [transfer/POS/cash].
+
+Write these for my WhatsApp Business app, in a warm, friendly Nigerian tone:
+1. A short greeting message for new customers
+2. An away message for after hours that still collects their order details
+3. Six quick replies with these shortcuts: /menu /price /order /deposit /delivery /thanks
+4. A 2-line catalogue description for each product that makes it sound delicious without over-promising</pre>
+    </div>
+    <div class="takehome"><b>They leave with</b><span>A WhatsApp Business account that greets, answers prices and collects orders while they're at the oven. It's set up before they leave the room.</span></div>
+  </article>
+</section>
+
+<!-- WIN 3 -->
+<section id="win3">
+  <article class="win">
+    <div class="win-head">
+      <span class="win-num">WIN 3 · 10 MIN</span>
+      <div class="chips"><span class="chip t">Meta AI in WhatsApp</span><span class="chip t">ChatGPT voice</span><span class="chip">Marketing</span></div>
+    </div>
+    <h3>Photo to post, spoken in their own words</h3>
+    <p class="promise">Snap a product, send it to AI, and talk about it in Pidgin or English. They get captions and a photo lesson back.</p>
+    <p class="why">This is what makes the session different: AI works as a <em>photo coach</em>, and nobody fakes a cake. Bakers who don't enjoy typing can just speak. ChatGPT's voice mode understands Nigerian Pidgin, so a baker can describe a cake the way they'd describe it to a customer and get polished captions back.</p>
+    <div class="meta">
+      <div><h4>When to use it</h4><ul><li>Every time a new batch or custom cake comes out</li><li>WhatsApp Status, Instagram, TikTok, Facebook</li></ul></div>
+      <div><h4>Steps</h4><ol><li>Photograph a product by a window, in daylight.</li><li>Upload it to ChatGPT or Meta AI with prompt A.</li><li>Tap the mic and describe the cake. Then use prompt B.</li></ol></div>
+    </div>
+    <div class="prompt">
+      <div class="prompt-label">Prompt A · photo coach <button class="copy" type="button">Copy</button></div>
+<pre>This is a photo of my [product], taken with my phone. Be honest: give me 3 simple ways to make my next photo look better using only my phone. Cover light, angle, background and props I already have in a kitchen. Don't change the cake itself.</pre>
+    </div>
+    <div class="prompt">
+      <div class="prompt-label">Prompt B · captions <button class="copy" type="button">Copy</button></div>
+<pre>Using the photo and what I just said about it, write 3 captions:
+1. Fun and playful
+2. In Nigerian Pidgin
+3. For office, wedding or event bulk orders
+End each with "Order on WhatsApp: [number]". Add 5 hashtags for bakers in [city].</pre>
+    </div>
+    <div class="takehome"><b>They leave with</b><span>Three posts ready to publish, plus three photo tips that make every future post look better.</span></div>
+    <p class="tip">Honesty rule for the room: AI can tidy a background, but never post an AI-generated cake you didn't bake. The customer will notice the difference on pickup day, and you lose their trust.</p>
+  </article>
+</section>
+
+<!-- WIN 4 -->
+<section id="win4">
+  <article class="win">
+    <div class="win-head">
+      <span class="win-num">WIN 4 · 10 MIN</span>
+      <div class="chips"><span class="chip t">ChatGPT</span><span class="chip">Negotiation</span><span class="chip">Pairs activity</span></div>
+    </div>
+    <h3>The "Last price?" sparring partner</h3>
+    <p class="promise">AI plays the customer who haggles, wants to pay after delivery, or complains about a late cake. The baker practises, and AI scores the reply.</p>
+    <p class="why">Nobody else teaches this, and it goes straight to profit. Giving in on price and baking without a deposit are where margins disappear. Practising against AI costs nothing, and bakers enjoy it. Put it on the projector with a volunteer and let the room vote on the replies.</p>
+    <div class="meta">
+      <div><h4>When to use it</h4><ul><li>Before a busy season</li><li>Training a new sales staff member or apprentice</li><li>After a customer conversation that went badly</li></ul></div>
+      <div><h4>Other scenarios to try</h4><ul><li>Wrong name written on the cake</li><li>Delivery arrived an hour late</li><li>"My friend sells it cheaper"</li></ul></div>
+    </div>
+    <div class="prompt">
+      <div class="prompt-label">Prompt to copy <button class="copy" type="button">Copy</button></div>
+<pre>Role-play with me. You are a Nigerian customer who wants a 2-step birthday cake for this Saturday. You keep asking for "last price", you want a big discount, and you want to pay after delivery. Be realistic and a bit stubborn. Send one message at a time and wait for my reply.
+
+I am the baker. After 6 messages, stop the role-play and score me out of 10 on:
+- holding my price
+- getting a deposit
+- staying friendly
+Then show me better wording for my weakest reply.</pre>
+    </div>
+    <div class="takehome"><b>They leave with</b><span>Tested replies for their three hardest customer moments, and a deposit policy they can say out loud with confidence.</span></div>
+  </article>
+</section>
+
+<!-- WIN 5 -->
+<section id="win5">
+  <article class="win">
+    <div class="win-head">
+      <span class="win-num">WIN 5 · 8 MIN</span>
+      <div class="chips"><span class="chip t">ChatGPT</span><span class="chip t">Gemini</span><span class="chip">Planning</span></div>
+    </div>
+    <h3>The 90-day selling calendar</h3>
+    <p class="promise">Every sales peak for the next three months, with the product to push and the day to start promoting it.</p>
+    <p class="why">Most bakers start advertising Christmas cakes in December, after the early buyers have already ordered elsewhere. AI lists the occasions, suggests a bundle for each, and counts back to the start date.</p>
+    <div class="meta">
+      <div><h4>When to use it</h4><ul><li>At the start of every quarter</li><li>Plan flour and packaging buying around the peaks</li></ul></div>
+      <div><h4>Occasions it should catch</h4><ul><li>Independence Day, Christmas, "Detty December", New Year</li><li>Valentine's, Mothering Sunday, Easter, Sallah</li><li>School resumption, weddings, end-of-year office parties</li></ul></div>
+    </div>
+    <div class="prompt">
+      <div class="prompt-label">Prompt to copy <button class="copy" type="button">Copy</button></div>
+<pre>Today is [date]. I sell [products] in [city], Nigeria. My customers are mostly [families / offices / students / event planners].
+
+Make me a 90-day selling calendar as a table with these columns:
+Occasion | Date | Product or bundle to push | Day to start promoting | One post idea
+
+Include Nigerian public holidays, religious festivals, school calendar dates, wedding season and end-of-year office parties. After the table, tell me which 2 weeks will need the most flour and packaging so I can buy early.</pre>
+    </div>
+    <div class="takehome"><b>They leave with</b><span>A three-month plan they can screenshot and pin, with the date to start promoting each occasion.</span></div>
+  </article>
+</section>
+
+<section id="bonus">
+  <div class="stack">
+    <span class="eyebrow">Take-home extras</span>
+    <h2>Five more wins for the handout</h2>
+    <p class="lede">These don't fit in the 60 minutes, but they're easy to follow alone at home. Put them on the back of the handout.</p>
+  </div>
+  <div class="grid2">
+    <div class="bonus">
+      <h3>The order form that stops mistakes</h3>
+      <p>AI writes a checklist of questions to ask on every custom order (name spelling, date, pickup or delivery, allergies, deposit). It also writes a confirmation message the customer replies "CONFIRM" to. Fewer wrong-name cakes and fewer no-shows.</p>
+      <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>Create a WhatsApp order checklist for my custom cake business. It should cover every detail I must confirm before baking, then a summary message the customer must reply "CONFIRM" to, including my [50%] deposit and cancellation rule.</pre></div>
+    </div>
+    <div class="bonus">
+      <h3>Turn leftover bread into income</h3>
+      <p>Unsold bread is lost money. AI suggests products made from day-old bread (bread pudding, garlic toast, croutons, bread chips), with a simple price for each.</p>
+      <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>I usually have about [number] unsold loaves at the end of the day. Suggest 5 products I can make and sell from day-old bread using ingredients easy to find in Nigeria. For each: rough cost, suggested price, and how long it keeps.</pre></div>
+    </div>
+    <div class="bonus">
+      <h3>The two-week sales notebook</h3>
+      <p>For 14 days they write down how many they baked, sold and had left over each day. Then they paste the list into AI and ask which days to bake less. This cuts waste without any software.</p>
+      <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>Here are my last 14 days: [day – baked – sold – left over]. Which days am I over-baking or running out? How many should I bake each day of the week next week? Explain it simply.</pre></div>
+    </div>
+    <div class="bonus">
+      <h3>The local flavour lab</h3>
+      <p>AI suggests new products built on local flavours such as zobo, tiger nut (aya), plantain, coconut and ginger. Treat each idea as a starting point and test a small batch first, because AI recipe ratios are often wrong.</p>
+      <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>Suggest 5 new bakery products using Nigerian flavours like zobo, tiger nut, plantain, coconut or ginger, which I can make with my current oven and equipment. For each: who would buy it, a starting recipe for a small test batch, and a selling price idea.</pre></div>
+    </div>
+    <div class="bonus">
+      <h3>One-page training card for new staff</h3>
+      <p>They describe their process by voice note, and AI turns it into a step-by-step card with a hygiene checklist to stick on the wall. Useful for every new apprentice.</p>
+      <div class="prompt"><div class="prompt-label">Prompt <button class="copy" type="button">Copy</button></div><pre>I'll describe how we make [product] in my bakery. Turn it into a one-page step-by-step training card for a new apprentice, with a daily hygiene and safety checklist at the bottom. Use short, simple sentences.</pre></div>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="stack">
+    <span class="eyebrow">Which tool, when</span>
+    <h2>The four free tools to show</h2>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tool</th><th>Best for</th><th>Why bakers like it</th><th>Watch out for</th></tr></thead>
+      <tbody>
+        <tr><td>Meta AI in WhatsApp</td><td>Quick captions, image ideas, fast questions</td><td>Already on their phone and available in Nigeria (English). No new app.</td><td>Keep business chats with customers separate from AI chats.</td></tr>
+        <tr><td>ChatGPT (free app)</td><td>Costing, role-play, calendars, voice notes</td><td>Voice mode understands Nigerian Pidgin. Reads photos of handwritten recipes.</td><td>The free tier has daily limits. Check every sum.</td></tr>
+        <tr><td>Gemini (Google)</td><td>Planning, and a second opinion on numbers</td><td>Comes with many Android phones.</td><td>Answers can vary. Compare with ChatGPT for big decisions.</td></tr>
+        <tr><td>Canva</td><td>Flyers, price lists, menu boards</td><td>Free templates plus built-in AI text and design tools.</td><td>Needs more data than chat apps. Download designs on Wi-Fi.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="stack">
+    <span class="eyebrow">Golden rules</span>
+    <h2>Five rules to say out loud before they leave</h2>
+  </div>
+  <div class="rules">
+    <div class="rule"><b>Check the maths</b><span>AI makes arithmetic mistakes. Always ask it to show its working, then check with a calculator.</span></div>
+    <div class="rule"><b>Never fake the cake</b><span>Improve the photo, not the product. Only post what you actually baked.</span></div>
+    <div class="rule"><b>Protect customer details</b><span>Don't paste customers' phone numbers, addresses or bank details into AI.</span></div>
+    <div class="rule"><b>Test recipes small</b><span>Treat an AI recipe as an idea. Bake a small test batch before you sell it.</span></div>
+    <div class="rule"><b>You stay the baker</b><span>AI drafts and you decide. Read everything before you send it to a customer.</span></div>
+  </div>
+</section>
+
+<section id="prep">
+  <div class="stack">
+    <span class="eyebrow">Send 2–3 days before</span>
+    <h2>Pre-event WhatsApp message</h2>
+  </div>
+  <div class="prompt">
+    <div class="prompt-label">Message to broadcast <button class="copy" type="button">Copy</button></div>
+<pre>Hello bakers! 🍞 Looking forward to our AI session on [date].
+
+To get the most from it, please come with:
+1. A charged phone with data
+2. WhatsApp updated to the latest version
+3. The free ChatGPT app installed (search "ChatGPT" in Play Store or App Store)
+4. The recipe for your best-selling product, and what you paid for each ingredient
+
+You'll go home with a real price for your product, a WhatsApp shop that answers customers for you, and a month of posts. See you there!</pre>
+  </div>
+  <p class="tip">Room tips: pair bakers who don't have data with someone who does. Put one phone on the projector (screen-mirror or a document camera) so the room follows each step. Use one volunteer's real recipe for Win 1. Seeing a real number surprise a real baker makes the point better than any slide.</p>
+</section>
+
+<section id="sources" class="sources">
+  <h3>Sources</h3>
+  <ul>
+    <li><a href="https://allafrica.com/stories/202512180129.html" target="_blank" rel="noopener">allAfrica: Bread prices, no significant drop in flour price (Dec 2025)</a></li>
+    <li><a href="https://www.pulse.ng/story/bread-is-about-to-get-more-expensive-heres-why-your-morning-meal-will-cost-more-now-2026042411560825088" target="_blank" rel="noopener">Pulse Nigeria: Bread is about to get more expensive (Apr 2026)</a></li>
+    <li><a href="https://nairametrics.com/2024/05/04/bread-prices-rise-as-bakers-grapple-with-over-100-jump-in-input-costs/" target="_blank" rel="noopener">Nairametrics: Bakers grapple with over 100% jump in input costs</a></li>
+    <li><a href="https://bestsales.ng/cost-of-flour-and-baking-ingredients-in-nigeria/" target="_blank" rel="noopener">BestSales.ng: Cost of flour and baking ingredients in Nigeria</a></li>
+    <li><a href="https://techpoint.africa/news/meta-ai-enables-google-bing-searches/" target="_blank" rel="noopener">Techpoint Africa: Meta AI launches on WhatsApp and Instagram in Africa</a></li>
+    <li><a href="https://blog.whatsapp.com/more-ways-to-use-meta-ai-now-available-for-more-people" target="_blank" rel="noopener">WhatsApp Blog: Meta AI now available for more people</a></li>
+    <li><a href="https://peopleofcolorintech.com/articles/chatgpt-can-now-speak-in-jamaican-patois-and-nigerian-pidgin-well-kind-of/" target="_blank" rel="noopener">POCIT: ChatGPT voice and Nigerian Pidgin</a></li>
+    <li><a href="https://www.techcityng.com/chatgpt-for-small-business-africa-practical-guide-2026-growth-tips/" target="_blank" rel="noopener">TechCity: ChatGPT for small business in Africa (2026)</a></li>
+    <li><a href="https://nexoristech.com/insights/ai-chatbot-for-nigerian-businesses/" target="_blank" rel="noopener">Nexoris: AI chatbot build-vs-buy costs for Nigerian businesses</a></li>
+    <li><a href="https://www.tochukwunkwocha.com/blog/ai-for-nigerian-small-business-owners-practical-daily-use-cases" target="_blank" rel="noopener">Tochukwu Tech: AI for Nigerian small business owners</a></li>
+    <li><a href="https://www.janellecopeland.com/ai-made-simple-for-bakers-save-time-sell-more" target="_blank" rel="noopener">Janelle Copeland: AI made simple for bakers</a></li>
+    <li><a href="https://www.bema.org/the-commercial-baking-industry-guide-to-ai/" target="_blank" rel="noopener">BEMA: The commercial baking industry guide to AI</a></li>
+  </ul>
+</section>
+
+<footer>Prices change fast. Check today's flour, yeast and butter prices in your market before the session and use them in the Win 1 demo.</footer>
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var pre = btn.closest('.prompt').querySelector('pre');
+    var text = pre.innerText;
+    function done(){ btn.textContent='Copied'; setTimeout(function(){btn.textContent='Copy';},1600); }
+    function fallback(){
+      var r=document.createRange(); r.selectNodeContents(pre);
+      var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent='Selected, press copy';
+      setTimeout(function(){btn.textContent='Copy';},2200);
+    }
+    try{
+      navigator.clipboard.writeText(text).then(done, fallback);
+    }catch(e){ fallback(); }
+  });
+});
+</script>
