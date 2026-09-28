@@ -1,0 +1,218 @@
+<title>Aviura Funding Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Figtree:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --brand:#132118; --gold:#c9a860;
+  --bg:#F4F6F3; --surface:#FFFFFF; --ink:#132118; --muted:#56635A; --line:#DCE2DC;
+  --accent:#8A6D2E; --gold-soft:#F3ECDC;
+  --h1:#EEF1EC; --h1-ink:#56635A; --h2:#E9DDBE; --h2-ink:#132118; --h3:#c9a860; --h3-ink:#132118; --h4:#132118; --h4-ink:#E6CF96;
+  --display:"Sora",system-ui,sans-serif; --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0C150F; --surface:#132118; --ink:#E8EDE8; --muted:#A3AEA6; --line:#26382B;
+    --accent:#D9BC7A; --gold-soft:#2A2A1C;
+    --h1:#1A2A1F; --h1-ink:#A3AEA6; --h2:#3D3A24; --h2-ink:#EDE3C8; --h3:#8C7640; --h3-ink:#FFFFFF; --h4:#c9a860; --h4-ink:#132118;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0C150F; --surface:#132118; --ink:#E8EDE8; --muted:#A3AEA6; --line:#26382B;
+  --accent:#D9BC7A; --gold-soft:#2A2A1C;
+  --h1:#1A2A1F; --h1-ink:#A3AEA6; --h2:#3D3A24; --h2-ink:#EDE3C8; --h3:#8C7640; --h3-ink:#FFFFFF; --h4:#c9a860; --h4-ink:#132118;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);margin:0}
+.hero{background:var(--brand);color:#EEF1EC;padding-inline:20px;padding-block:36px 40px}
+.hero-in{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.brandmark{font:700 1rem var(--display);letter-spacing:.32em;color:var(--gold)}
+.hero h1{font:700 clamp(1.9rem,4.6vw,2.9rem)/1.12 var(--display);margin:0;text-wrap:balance;max-width:22ch}
+.hero p{margin:0;max-width:64ch;color:#C9D2CB}
+.hero .tag{font:500 .75rem var(--mono);letter-spacing:.08em;color:var(--gold)}
+.wrap{max-width:1000px;margin:0 auto;padding-inline:20px;padding-block:40px 64px;display:flex;flex-direction:column;gap:52px}
+h2{font:600 1.5rem/1.2 var(--display);margin:0;text-wrap:balance}
+h3{font:600 1.02rem/1.3 var(--display);margin:0}
+p{margin:0;max-width:68ch}
+a{color:var(--accent)}
+section{display:flex;flex-direction:column;gap:18px}
+.eyebrow{font:500 .72rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:.86rem;color:var(--muted)}
+
+.top3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.move{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:8px;padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+.move .rank{font:500 .72rem var(--mono);color:var(--accent);letter-spacing:.08em}
+.move p{font-size:.94rem}
+.move .fact{font:600 1.35rem var(--display);font-variant-numeric:tabular-nums}
+
+.legend{display:flex;gap:16px;flex-wrap:wrap;font:500 .74rem var(--mono);color:var(--muted)}
+.legend i{display:inline-block;width:18px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px;border:1px solid var(--line)}
+.heatwrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:600px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+thead th{font:500 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+tbody th{font:600 .95rem var(--display);width:26%}
+.cell{width:100%;text-align:left;border:2px solid transparent;border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;font:inherit;cursor:pointer}
+.cell b{font:500 .7rem var(--mono);letter-spacing:.08em}
+.cell span{font-size:.86rem;line-height:1.4}
+.l1{background:var(--h1);color:var(--h1-ink)} .l2{background:var(--h2);color:var(--h2-ink)} .l3{background:var(--h3);color:var(--h3-ink)} .l4{background:var(--h4);color:var(--h4-ink)}
+.cell[aria-pressed="true"]{border-color:var(--ink)}
+.cell:focus-visible,.tab:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.detail{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.detail .check{font-size:.9rem;background:var(--gold-soft);border-radius:4px;padding:8px 10px}
+
+.teams{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.team{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.team ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px;font-size:.94rem}
+
+.sources{font-size:.82rem;color:var(--muted);border-top:1px solid var(--line);padding-top:20px;display:flex;flex-direction:column;gap:8px}
+.sources ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:3px}
+@media (prefers-reduced-motion:no-preference){.cell{transition:border-color .15s}}
+</style>
+
+<div class="hero">
+  <div class="hero-in">
+    <span class="brandmark">AVIURA</span>
+    <h1>Funding the new Malaysia production line</h1>
+    <p>Aviura is a UK-based advanced materials company with a production facility in Malaysia, serving plastic manufacturers and converters across a range of applications: antimicrobial, antistatic, anti-fog, UV stabilisation and colour masterbatch.</p>
+    <span class="tag">FUNDING MAP · UK + MALAYSIA · SEPTEMBER 2026</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <span class="eyebrow">The quick win</span>
+    <h2>Three moves to make first</h2>
+    <div class="top3">
+      <div class="move">
+        <span class="rank">01 · MALAYSIA · TAX</span>
+        <h3>MIDA New Incentive Framework</h3>
+        <span class="fact">Up to 100% ITA</span>
+        <p>Live since 1 March 2026. A new line can earn an Investment Tax Allowance of up to 100%, or a special tax rate as low as 0%, for up to 15 years. Open to foreign-owned companies.</p>
+      </div>
+      <div class="move">
+        <span class="rank">02 · MALAYSIA · GUARANTEED LOAN</span>
+        <h3>GTFS 5.0 through a Malaysian bank</h3>
+        <span class="fact">Closes 31 Dec 2026</span>
+        <p>Government guarantees 60–80% of the green part of the financing (energy-efficient machinery, waste reduction). Applied for through participating banks.</p>
+      </div>
+      <div class="move">
+        <span class="rank">03 · MALAYSIA · SOFT LOAN + GRANT</span>
+        <h3>MIDF soft loan and SAG MADANI grant</h3>
+        <span class="fact">RM20m loan · RM1m grant</span>
+        <p>MIDF lends up to RM20m for machinery and automation. SAG MADANI matches automation spend 70:30, up to RM1m. Both require at least 51% Malaysian ownership.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Funding heat map</span>
+    <h2>Where the money is for this line</h2>
+    <p class="muted">Darker means a stronger fit for funding a new line at an existing Malaysian facility. Select a cell for details and what to check.</p>
+    <div class="legend"><span><i class="l1"></i>Weak fit</span><span><i class="l2"></i>Possible</span><span><i class="l3"></i>Strong</span><span><i class="l4"></i>Priority</span></div>
+    <div class="heatwrap">
+      <table>
+        <thead><tr><th>Funding source</th><th>Malaysia (the line)</th><th>UK (group level)</th></tr></thead>
+        <tbody id="heat"></tbody>
+      </table>
+    </div>
+    <div class="detail" id="detail" aria-live="polite"></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Next 30 days</span>
+    <h2>Who does what</h2>
+    <div class="teams">
+      <div class="team"><h3>Finance</h3><ul>
+        <li>Confirm the Malaysian entity's ownership split. It decides whether MIDF and SAG MADANI are open to us.</li>
+        <li>Request a MIDA pre-assessment for the new line under the New Incentive Framework.</li>
+        <li>Get GTFS 5.0 terms from two participating banks before the 31 Dec deadline.</li>
+      </ul></div>
+      <div class="team"><h3>Operations</h3><ul>
+        <li>Final equipment list with supplier quotes. Every application asks for it.</li>
+        <li>Energy and waste figures for the new machinery, to size the green portion for GTFS.</li>
+      </ul></div>
+      <div class="team"><h3>Technical</h3><ul>
+        <li>One-page line specification: capacity, grades to run, automation level. Funders score automation and technology level.</li>
+      </ul></div>
+      <div class="team"><h3>Marketing</h3><ul>
+        <li>Letters of intent from two or three customers for the new line's output. Banks weigh these heavily.</li>
+        <li>Short Aviura profile for funder meetings.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <footer class="sources">
+    <span class="eyebrow">Sources</span>
+    <p>Heat ratings are an assessment based on the public sources below. Scheme terms change; confirm with each agency before applying.</p>
+    <ul>
+      <li><a href="https://www.mida.gov.my/media-release/new-incentive-framework-nif/">MIDA: New Incentive Framework</a></li>
+      <li><a href="https://www.industrialproperty.my/mida-new-incentive-framework-nif-malaysia-2026-industrial-manufacturers/">MIDA NIF 2026 guide</a></li>
+      <li><a href="https://www.gtfs.my/faq/what-gtfs-50">GTFS 5.0</a></li>
+      <li><a href="https://mastic.mosti.gov.my/sti-incentives/soft-financing-scheme-for-automation-and-modernisation-sfsam/">MIDF Soft Financing Scheme for Automation and Modernisation (MASTIC)</a></li>
+      <li><a href="https://automation.org.my/midf-soft-loan-scheme-for-automation-modernisation-enhancement/">MIDF soft loan terms</a></li>
+      <li><a href="https://www.crowe.com/my/insights/the-madani-smart-automation-grant">Crowe: SAG MADANI</a></li>
+      <li><a href="https://www.ukexportfinance.gov.uk/products-and-services/">UK Export Finance: products and services</a></li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+const rows = [
+  {src:"Tax incentives",
+   my:[4,"MIDA NIF: up to 100% ITA or 0% rate, up to 15 yrs","Projects are scored against Malaysia's national investment priorities (NIMP 2030). Automation, technology level and sustainability raise the score and the incentive.","Apply through MIDA before major spend is committed."],
+   uk:[1,"Not for an overseas line","UK capital allowances and R&D relief apply to UK activity, not a Malaysian production line.",""]},
+  {src:"Guaranteed green loans",
+   my:[4,"GTFS 5.0: 60–80% guarantee, until 31 Dec 2026","Covers the green portion of the investment, such as energy-efficient extruders and waste reduction. No longer includes an interest rebate, but the guarantee eases bank approval.","Confirm eligibility criteria for the Malaysian entity with a participating bank."],
+   uk:[2,"Sustainability-linked loans","UK banks offer lower rates tied to documented sustainability targets. Would be a group-level facility.",""]},
+  {src:"Soft loans",
+   my:[3,"MIDF: up to RM20m, 4% (SME) / 5%, up to 10 yrs","Covers machinery, factory and working capital, with up to 90% of automation cost financed and a grace period of up to 3 years.","Requires at least 51% Malaysian ownership. Check the entity's shareholding first."],
+   uk:[1,"Little available","UK concessional lending supports UK-based activity.",""]},
+  {src:"Grants",
+   my:[3,"SAG MADANI: 70:30 match, up to RM1m","For SMEs and mid-tier manufacturers automating production (turnover up to RM50m or up to 200 staff). Needs a valid manufacturing licence and 3 years of operation.","Requires at least 51% Malaysian ownership."],
+   uk:[1,"Not for an overseas line","Innovate UK and Made Smarter fund UK-based projects.",""]},
+  {src:"Bank and machinery finance",
+   my:[3,"Asset finance on new equipment","Malaysian banks finance production machinery against the equipment itself. Often combined with GTFS for the green portion.",""],
+   uk:[3,"Group facility from UK bank","A UK relationship bank can lend at group level and fund the Malaysian subsidiary. Useful if the Malaysian entity lacks trading history.",""]},
+  {src:"Export finance",
+   my:[1,"Not applicable",""," "],
+   uk:[2,"UK Export Finance","UKEF backs UK exporters' borrowing. The Export Development Guarantee is for facilities over £25m, so likely only relevant at larger scale. UKEF export finance managers give free advice.","Book a call with a UKEF export finance manager."]},
+  {src:"Customer-backed funding",
+   my:[3,"Supply agreements and prepayment","Committed orders from converters strengthen every loan application and can fund part of the line through prepayment.",""],
+   uk:[3,"UK customers for Malaysian output","UK customers placing long-term orders count as offtake for the new line.",""]},
+  {src:"Equity partners",
+   my:[2,"Strategic or local partner","A Malaysian partner could take a stake in the entity, which could also open MIDF and SAG MADANI.",""],
+   uk:[2,"Private equity or strategic investor","Possible, but slower and gives up ownership. Better after the quicker routes above.",""]}
+];
+const labels={1:"WEAK FIT",2:"POSSIBLE",3:"STRONG",4:"PRIORITY"};
+const names={my:"Malaysia",uk:"UK"};
+const tbody=document.getElementById("heat"), detail=document.getElementById("detail");
+function show(r,k,btn){
+  document.querySelectorAll(".cell").forEach(c=>c.setAttribute("aria-pressed","false"));
+  btn.setAttribute("aria-pressed","true");
+  const d=r[k]; detail.innerHTML="";
+  const h=document.createElement("h3"); h.textContent=r.src+" · "+names[k]+" · "+labels[d[0]].toLowerCase();
+  const p=document.createElement("p"); p.textContent=d[2]||d[1];
+  detail.append(h,p);
+  if(d[3]&&d[3].trim()){const c=document.createElement("p");c.className="check";c.textContent="Check: "+d[3];detail.append(c);}
+}
+rows.forEach((r,i)=>{
+  const tr=document.createElement("tr");
+  const th=document.createElement("th"); th.scope="row"; th.textContent=r.src; tr.append(th);
+  ["my","uk"].forEach(k=>{
+    const td=document.createElement("td"), b=document.createElement("button");
+    b.className="cell l"+r[k][0]; b.setAttribute("aria-pressed","false");
+    const t=document.createElement("b"); t.textContent=labels[r[k][0]];
+    const s=document.createElement("span"); s.textContent=r[k][1];
+    b.append(t,s); b.addEventListener("click",()=>show(r,k,b));
+    td.append(b); tr.append(td);
+    if(i===0&&k==="my") show(r,k,b);
+  });
+  tbody.append(tr);
+});
+</script>
