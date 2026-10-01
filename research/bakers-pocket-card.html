@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bakery Assistant Pocket Card</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:210mm;background:#fff;color:#1B211C;font-family:"Figtree","Liberation Sans","DejaVu Sans",Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.sheet{width:210mm;height:297mm;display:grid;grid-template-columns:105mm 105mm;grid-template-rows:148.5mm 148.5mm;page-break-after:always;position:relative}
+.sheet:last-child{page-break-after:auto}
+.sheet::before,.sheet::after{content:"";position:absolute;border:0 dashed #B9C2BA}
+.sheet::before{left:105mm;top:0;bottom:0;border-left-width:.3mm}
+.sheet::after{top:148.5mm;left:0;right:0;border-top-width:.3mm}
+.card{padding:9mm 9mm 8mm;display:flex;flex-direction:column;gap:5mm;overflow:hidden}
+.disp{font-family:"Bricolage Grotesque","Liberation Sans","DejaVu Sans",Arial,sans-serif}
+.eyebrow{font-size:7.4pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0E6B45}
+h1{font-size:25pt;line-height:1.02;font-weight:800;letter-spacing:-.01em}
+h2{font-size:12.5pt;font-weight:800;color:#0E6B45;margin-bottom:2mm}
+.qrrow{display:flex;gap:4mm;align-items:center}
+.qr{width:42mm;height:42mm;flex:none;border:.5mm solid #1B211C;border-radius:2mm;display:flex;align-items:center;justify-content:center;text-align:center;font-size:7pt;color:#5A645C;padding:3mm;background:#F6F7F3}
+.qr.small{width:26mm;height:26mm;font-size:6.5pt;padding:2mm}
+.scan{font-size:9.4pt;line-height:1.4;color:#3D463F}
+.scan b{color:#1B211C}
+.ask{background:#E3F1E9;border-radius:2mm;padding:4mm 4.5mm;display:grid;gap:2.2mm}
+.ask .t{font-size:7.6pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0E6B45}
+.ask div{font-size:10.6pt;font-weight:600;display:flex;gap:2.2mm}
+.ask i{font-style:normal;color:#C98A12;font-weight:800;width:4mm}
+.foot{margin-top:auto;font-size:7.6pt;color:#5A645C;border-top:.3mm solid #DCE1D9;padding-top:2mm;display:flex;justify-content:space-between;gap:3mm}
+.parts{display:grid;grid-template-columns:1fr 1fr;gap:4mm 4mm}
+.parts div{font-size:9.2pt;line-height:1.3}
+.parts b{display:block;font-size:10pt}
+.rules{display:grid;gap:3.6mm}
+.rules div{font-size:9.3pt;line-height:1.3}
+.rules b{font-weight:700}
+.challenge{margin-top:auto;background:#FBF0D6;border-radius:2mm;padding:2.6mm 3mm;display:flex;gap:3mm;align-items:center}
+.challenge p{font-size:9.2pt;line-height:1.35}
+.challenge b{display:block;font-size:11pt;color:#8A4B22}
+</style>
+</head>
+<body>
+
+<template id="front">
+  <div class="card">
+    <span class="eyebrow">AI for Bakers · Take-home</span>
+    <h1 class="disp">Your Bakery<br>Assistant</h1>
+    <div class="qrrow">
+      <div class="qr">QR code<br>for the Gem link<br>goes here</div>
+      <p class="scan"><b>Point your phone camera at the code.</b> It opens your assistant in Gemini. It's free with a Google account. Talk to it in English or Pidgin, by text, voice note or photo.</p>
+    </div>
+    <div class="ask">
+      <span class="t">Type a number to start</span>
+      <div><i>1</i>Price my product</div>
+      <div><i>2</i>Confirm a customer order</div>
+      <div><i>3</i>Write a post for my product</div>
+      <div><i>4</i>Plan how much to bake</div>
+      <div><i>5</i>Reply to a difficult customer</div>
+    </div>
+    <div class="foot"><span>[Facilitator name]</span><span>[Event · date · city]</span></div>
+  </div>
+</template>
+
+<template id="back">
+  <div class="card">
+    <div>
+      <h2 class="disp">Ask in four parts</h2>
+      <div class="parts">
+        <div><b>Who</b>I run a bakery in Ibadan</div>
+        <div><b>What</b>Price my 500g loaf</div>
+        <div><b>Details</b>Recipe, costs, dates</div>
+        <div><b>Shape</b>A table, in Pidgin</div>
+      </div>
+    </div>
+    <div>
+      <h2 class="disp">Five golden rules</h2>
+      <div class="rules">
+        <div><b>AI drafts, you decide.</b> Read it before you send it.</div>
+        <div><b>Check the maths</b> with a calculator.</div>
+        <div><b>Protect customers.</b> No phone numbers or bank details.</div>
+        <div><b>Never fake the cake.</b> Improve the photo, not the product.</div>
+        <div><b>One habit at a time.</b> Two weeks, then add the next.</div>
+      </div>
+    </div>
+    <div class="challenge">
+      <div class="qr small">WhatsApp<br>group QR</div>
+      <p><b>14-day challenge</b>One small task every morning. Join the WhatsApp group and start tomorrow.</p>
+    </div>
+  </div>
+</template>
+
+<div class="sheet" id="fronts"></div>
+<div class="sheet" id="backs"></div>
+
+<script>
+['front','back'].forEach(function(kind){
+  var tpl=document.getElementById(kind), sheet=document.getElementById(kind+'s');
+  for(var i=0;i<4;i++) sheet.appendChild(tpl.content.cloneNode(true));
+});
+</script>
+</body>
+</html>
