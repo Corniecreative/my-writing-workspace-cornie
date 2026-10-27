@@ -6,27 +6,16 @@
 
 ---
 
-## 0. Fix before the interview
-
-| Issue | Where | Action |
-|---|---|---|
-| Webinar numbers conflict: "403 signed up, 394 turned up" vs "398 registrations, 48 live attendees" | Cover letter vs Master CV | Confirm the real figures. Use one version everywhere. If live was 48, quote registrations + replay views + enquiries generated. |
-| Applied as "Digital Marketing Associate"; interviewing for "Business Development & Marketing Executive" | Cover letter | Be ready to say: "I applied for the marketing role; the BD side is where my exhibition follow-up and Expo work fits." |
-| "10+ years" vs "15+ years" | Restore CV vs Master CV | Pick one. Suggest: "15 years across business and marketing, 10 in marketing roles." |
-| Traze Ltd (your own AI readiness consultancy) | Master CV | Expect "Would you still run Traze?" Prepare a clear, honest answer (see section 6). |
-
----
-
 ## 1. Your positioning in one breath
 
 > "I sit where Clap Academy is going: B2B marketing, AI adoption and training, with working experience in both the UK and Nigeria. I've filled AI webinars, turned a conference talk into paid workshops, and I build the content and the follow-up system that turns attention into meetings."
 
 **Three proof points to repeat throughout:**
 1. **ICES Cake Expo Nigeria talk:** 15+ enquiries and 3 paid workshop sign-ups (talk → pipeline → revenue).
-2. **AI readiness webinar:** [confirm numbers] registrations; you designed, promoted and delivered it.
+2. **AI readiness webinar for bakers:** 403 signed up, 398 attended; you designed, promoted and delivered it.
 3. **Data-led marketing:** ROI +40% via segmentation (Angel Analytics); CPA −24%, acquisition +10% (Seed Mentors); traffic +103% across 12 accounts (Pallette).
 
-**Unfair advantage for this role:** UK + Nigeria. MSc at Royal Holloway, roles in London *and* Lagos. Most candidates can only speak to one market.
+**Unfair advantage for this role:** UK + Nigeria. 15+ years in business and marketing, MSc at Royal Holloway, roles in London *and* Lagos. Most candidates can only speak to one market.
 
 ---
 
@@ -70,10 +59,10 @@ Diagnose in order: **list** (right org, right person, right timing?) → **messa
 - Sell **outcomes**, not courses: "AI readiness for your workforce in 90 days."
 - Proof assets: case studies with numbers, executive testimonials, the London government programme.
 - **Thought leadership:** founder on LinkedIn, an executive podcast, a short "AI readiness index" or checklist as a lead magnet.
-- A **diagnostic first** offer (readiness assessment → tailored programme), like the pilot-first approach you use at Traze.
+- A **diagnostic first** offer (readiness assessment → tailored programme).
 
 **Q7 — A campaign you ran (STAR)**
-Pick one: AI readiness webinar (objective, promotion channels, registrations, outcome) **or** Angel Analytics segmentation (ROI +40%). Have both ready.
+Pick one: AI readiness webinar (objective, promotion channels, 403 sign-ups, 398 attended, outcome) **or** Angel Analytics segmentation (ROI +40%). Have both ready.
 
 **Q8 — LinkedIn content for HR/L&D, CEOs, public-sector leaders**
 - HR/L&D: skills-gap data, "how to roll out AI training without fear," delegate stories.
@@ -113,8 +102,8 @@ Fact-check every claim and number · written consent from people shown (GDPR) ·
 |---|---|---|
 | 16 Persuading a reluctant stakeholder | Aviura: getting directors/technical team aligned on new brand messaging for the masterbatch transition | What they resisted; what moved them |
 | 17 Multiple deadlines | Aviura: exhibition + website + LinkedIn + director reviews | How you prioritised |
-| 18 Something that failed | Webinar: if live attendance was low vs registrations, that's your story → what you changed (reminders, timing, replay) | Real numbers |
-| 19 Learning a tool fast | Lovable/Make for the bakery planner prototype, or Tableau at Angel Analytics | Time taken, result |
+| 18 Something that failed | Choose a campaign or test that underperformed (e.g. an A/B test variant at Seed Mentors, or an outreach round with low replies) → what you changed | Your example |
+| 19 Learning a tool fast | Tableau at Angel Analytics (KPI dashboards), or Make/Zapier automation | Time taken, result |
 | 20 Persistence and follow-up | Expo enquiries → 3 paid sign-ups | How many touches it took |
 
 ### E. Scenarios
@@ -194,6 +183,5 @@ Have screenshots ready in case the internet fails.
 
 ## 6. Tricky questions
 
-- **"Will you keep running Traze?"** → Prepare an honest answer: e.g. it's a small side project / you'd pause it / no conflict because it focuses on [bakery/SME workflows], not corporate training. Decide this before the interview.
 - **"You've moved roles often."** → Each role added a skill (SEO → product marketing → analytics → brand), and all of it comes together in this role.
 - **"Experience selling to government?"** → Be honest. Point to stakeholder work with directors, research skills, Healthwatch public-sector exposure, and your understanding of Nigerian business culture.
