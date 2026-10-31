@@ -20,11 +20,17 @@
 - Only 25 of the indexed pages are under `/profile/`. Most spam is elsewhere, e.g. root-level addresses like `/cryptocurrencycasino4803`.
 - Note: Google's result counts are estimates and are unreliable at large numbers. Use them for scale, not as exact figures.
 
+### 3. Clean pages (`site:theclapacademy.com -casino -crypto -profile`)
+- **About 27 results** (shown on page 3 of results, where Google's count is more accurate).
+- Includes a subdomain, `portfolio.theclapacademy.com/project/...`, with student data-analysis projects (US Crime Analysis Report, Air Canada Express Customer Feedback Analysis, HR Employee Exit and Promotions Analysis). These look legitimate.
+- So roughly 27 clean pages against about 7,340 indexed: well over 90% of the indexed site looks like spam (estimates only).
+
 ## Findings
 
 | # | Finding | Type | Priority |
 |---|---|---|---|
 | 1 | About 7,340 pages indexed, about 2,970 mention casino. Spam (crypto casino, power tools) indexed under the site's domain, apparently through user profile pages or injected pages | Security / spam / indexing | Critical |
+| 2 | Only about 27 clean pages found against about 7,340 indexed, so the genuine site is buried under spam | Indexing / reputation | Critical |
 
 ## Still to check
 
