@@ -86,7 +86,7 @@
 ## WhatsApp message draft (friendly, person known)
 
 **Message 1**
-Hey [Name]! I've done a first SEO health check on the Clap Academy website. I went through how Google is indexing it, what's showing up under your domain, what the site is built on, and how your brand appears in search. This is just the first layer: a full technical audit and the fixes would come after. But I already found a few things you need to know about, and one of them is serious. I've put it all together below with screenshots 👇
+Hey [Name]! I've done a first SEO health check on the Clap Academy website. This is just the first layer: a full technical audit and the fixes would come after. But I already found a few things you need to know about, and one of them is serious. I've put it all together below with screenshots 👇
 
 **Message 2** *(screenshot: `site:theclapacademy.com casino` results)*
 1️⃣ **The big one: casino spam on your website**
