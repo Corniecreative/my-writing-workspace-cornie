@@ -85,50 +85,52 @@
 
 ## WhatsApp message draft (friendly, person known)
 
+Rule: show what was found, never how it was found. Crop search bars from screenshots; no tool names or DIY steps.
+
 **Message 1**
 Hey [Name]! I've done a first SEO health check on the Clap Academy website. This is just the first layer: a full technical audit and the fixes would come after. But I already found a few things you need to know about, and one of them is serious. I've put it all together below with screenshots 👇
 
-**Message 2** *(screenshot: `site:theclapacademy.com casino` results)*
+**Message 2** *(screenshot: casino results, search bar cropped out)*
 1️⃣ **The big one: casino spam on your website**
 
-When I searched your site on Google, I found pages like:
+Google is showing pages on your website like:
 • "Rainbet Crypto Casino Online Tricks The Celebs..."
 • "The 3 Greatest Moments In Rainbet Crypto Casino History"
 • Even a guide to power tools in the UK 😅
 
-None of that is yours. Here's what Google shows (its own estimates):
+None of that is yours. Going by Google's own estimates:
 • Around **7,300 pages** indexed under theclapacademy.com
 • Around **3,000** of them mention "casino"
 • Only about **27** look like your actual pages
 
 A training academy would normally have around 20–100 real pages. So almost everything Google holds for your site is junk.
 
-**Message 3** *(screenshot: BuiltWith showing WordPress + Tutor LMS)*
+**Message 3** *(no screenshot)*
 **How it's happening (most likely):**
-Your site runs on WordPress with Tutor LMS. Tutor LMS gives everyone who registers a public profile page. Bots have been signing up through your student registration, creating thousands of fake accounts with names like "livecasino4367", and filling them with casino content. Google then indexes all of it under your name.
+Bots are signing up through your student registration and creating thousands of fake accounts with names like "livecasino4367". Each one gets a public profile page, which they fill with casino content, and Google indexes it all under your name.
 
 **Why spammers do it:** Google trusts your site more than theirs, so they borrow your reputation to push casino pages.
 
-**Why it matters:** it hasn't shown up when people search "Clap Academy" yet (I checked), but if Google decides your site is spammy, it can push down your real pages too, including your programmes. Your WordPress is also out of date, which is a security risk.
+**Why it matters:** it hasn't shown up when people search "Clap Academy" yet, but if Google decides your site is spammy, it can push down your real pages too, including your programmes. Some of your website software is also out of date, which is a security risk.
 
 **Message 4** *(screenshot: Google Business Profile showing "Add website")*
 2️⃣ **Quick win: your Google Business Profile**
-You've got 4.8 stars from 54 Google reviews, which is brilliant! But there's no website linked, so people who find you there can't click through to your site. That's a 2-minute fix.
+You've got 4.8 stars from 54 Google reviews, which is brilliant! But there's no website linked, so people who find you there can't click through to your site.
 
 3️⃣ **Smaller things I noticed:**
 • Under your homepage in Google, 3 of the 6 links are Login/Registration pages instead of your programmes
-• Google's "People also search for" shows children's schools and daycares, so it's not 100% sure what Clap Academy is yet
+• Google isn't 100% sure what Clap Academy is yet: it's associating you with children's schools and daycares
 • Your old clapacademy.co.uk redirects properly to the new site 👍 but your Trustpilot is still under the old domain
 
 **Message 5**
-**What the fix looks like:**
-1. **Close the door:** in Tutor LMS settings, turn off public profiles or stop Google indexing them. Tighten student and instructor registration. Add a CAPTCHA (like Cloudflare Turnstile or Google reCAPTCHA) plus email verification or manual approval.
-2. **Rule out a hack:** run a security scan (e.g. Wordfence), check admin users, and update WordPress, the theme and plugins.
-3. **Clean up:** bulk-delete the spam accounts and their content.
-4. **Get Google to drop them:** use the Removals tool in Search Console for the /profile/ pages, resubmit a clean sitemap, and check the Manual actions and Security issues reports.
-5. **Monitor:** recheck weekly until the spam drops out.
+**What I'd do to fix it:**
+1. Close the gap the bots are using so it can't happen again
+2. Check the site hasn't been compromised and secure it
+3. Remove all the spam accounts and pages
+4. Get Google to drop the spam from its index
+5. Monitor it until your site is clean
 
 **Message 6**
-Everything so far is from what's publicly visible on Google. To confirm exactly how they're getting in and how big it really is, I'd need access to your Search Console and the WordPress dashboard, and that's when I'd do the full technical audit.
+To confirm exactly how they're getting in and how big it really is, I'd need access to your Google Search Console and the website dashboard, and that's when I'd do the full technical audit.
 
 Happy to jump on a call and walk you through it. When are you free this week? 😊
