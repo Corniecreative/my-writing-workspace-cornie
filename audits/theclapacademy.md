@@ -31,12 +31,20 @@
 - Includes a subdomain, `portfolio.theclapacademy.com/project/...`, with student data-analysis projects (US Crime Analysis Report, Air Canada Express Customer Feedback Analysis, HR Employee Exit and Promotions Analysis). These look legitimate.
 - So roughly 27 clean pages against about 7,340 indexed: well over 90% of the indexed site looks like spam (estimates only).
 
+### 4. Platform and likely gap
+- **WordPress 6.7 + Tutor LMS.** Tutor LMS gives each registered student/instructor a public profile page at `/profile/username`, which matches the spam addresses (`/profile/livecasino4367`).
+- Likely gap: open registration (student and/or "become an instructor") + public profiles indexable by Google + no CAPTCHA / approval.
+- Top-level spam addresses (`/igaming-platform5541`) still need explaining: posts by registered users with publishing rights, or a hack. Confirm with dashboard access and a security scan.
+- WordPress 6.7 is not the latest version: outdated core/plugins are a security risk.
+
 ## Findings
 
 | # | Finding | Type | Priority |
 |---|---|---|---|
 | 1 | About 7,340 pages indexed, about 2,970 mention casino. Spam (crypto casino, power tools) indexed under the site's domain, most likely through fake user accounts (bot usernames like keyword + 4 digits) | Security / spam / indexing | Critical |
 | 2 | Only about 27 clean pages found against about 7,340 indexed, so the genuine site is buried under spam | Indexing / reputation | Critical |
+| 3 | WordPress + Tutor LMS public profiles and open registration with no bot protection (likely gap) | Security / configuration | Critical |
+| 4 | WordPress 6.7, not the latest version | Security | High |
 
 ## Still to check
 
@@ -45,10 +53,18 @@
 - [x] **A3.** `site:theclapacademy.com casino -inurl:profile`: done, see 2b
 - [ ] **Sign-up check:** find the Sign up / Join / Register / Log in button on the site and note what it offers (don't register)
 - [ ] **A4.** Try `inurl:forum`, `inurl:blog`, `inurl:post`, `inurl:group` with `site:theclapacademy.com`
-- [ ] **Platform:** BuiltWith (Analytics and Tracking) shows **HighLevel (GoHighLevel)**, Global Site Tag, Google Analytics. CMS section not seen yet: scroll down on BuiltWith, or view source and search `leadconnector` / `highlevel`
+- [x] **Platform:** BuiltWith CMS = **WordPress 6.7 + Tutor LMS** (course plugin). HighLevel is used for CRM/marketing only.
 - [ ] **B. Real pages:** what the legitimate pages are, and how many
 - [ ] **C. Sitemap:** `theclapacademy.com/sitemap.xml`
 - [ ] **D. robots.txt:** `theclapacademy.com/robots.txt`
 - [ ] **E. Branded search:** search "Clap Academy" and see what shows up
 - [ ] **F. PageSpeed Insights (mobile):** https://pagespeed.web.dev/
 - [ ] **G. Rich Results Test (structured data):** https://search.google.com/test/rich-results
+
+## Proposed fix plan (for the paid engagement)
+
+1. **Close the door:** Tutor LMS settings: turn off public profiles (or noindex them); review student and instructor registration; WordPress Settings → General → check "Anyone can register" and the default role; add a CAPTCHA (e.g. Cloudflare Turnstile or reCAPTCHA) and email verification / manual approval.
+2. **Rule out a hack:** security scan (e.g. Wordfence), check admin users, update WordPress core, themes and plugins.
+3. **Clean up:** bulk-delete spam accounts and their content; spam URLs should return 404/410.
+4. **Get Google to drop them:** Search Console → Removals for urgent patterns (e.g. `/profile/` prefix), resubmit a clean sitemap, check the Manual actions and Security issues reports.
+5. **Monitor:** recheck `site:` counts weekly until spam falls out of the index.
