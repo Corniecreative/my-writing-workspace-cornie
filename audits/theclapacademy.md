@@ -43,6 +43,7 @@
 - **Second domain:** `clapacademy.co.uk` also ranks (About page), and Trustpilot reviews are filed under `clapacademy.co.uk`. Two websites for one brand.
 - **Google Business Profile:** "Clap Academy", 4.8 stars, 54 Google reviews, Training centre, phone 07722 936139, hours listed, but shows **"Add website"**: no website linked.
 - Other profiles: LinkedIn (210+), Instagram (40+), YouTube, X, Facebook, Skool community.
+- Homepage: hero "Break Into High-Demand Tech Roles...", buttons "Book a Free 1-to-1 Career Call" and "Join our community"; AI chat assistant "Chima" built on Zapier.
 - "People also search for" shows unrelated children's schools and daycares: Google's understanding of what the brand is looks weak.
 
 ## Findings
@@ -53,7 +54,7 @@
 | 2 | Only about 27 clean pages found against about 7,340 indexed, so the genuine site is buried under spam | Indexing / reputation | Critical |
 | 3 | WordPress + Tutor LMS public profiles and open registration with no bot protection (likely gap) | Security / configuration | Critical |
 | 4 | WordPress 6.7, not the latest version | Security | High |
-| 5 | Two domains for one brand (theclapacademy.com and clapacademy.co.uk), Trustpilot tied to the .co.uk | Technical / authority | High (confirm redirect) |
+| 5 | Two domains for one brand (theclapacademy.com and clapacademy.co.uk), Trustpilot tied to the .co.uk | Technical / authority | Medium: .co.uk redirects to .com; Trustpilot, old Google results and profile links still point to .co.uk; confirm it is a 301 |
 | 6 | Google Business Profile has no website linked (54 reviews, 4.8 stars) | Local SEO | High, quick win |
 | 7 | Sitelinks dominated by Login / Registration pages; registration page shows login text | On-page / architecture | Medium |
 | 8 | Weak brand entity signals (unrelated "People also search for") | Structured data / entity | Medium |
@@ -70,7 +71,7 @@
 - [ ] **C. Sitemap:** `theclapacademy.com/sitemap.xml`
 - [ ] **D. robots.txt:** `theclapacademy.com/robots.txt`
 - [x] **E. Branded search:** done, see section 5
-- [ ] **H. Second domain:** open `clapacademy.co.uk` and see whether it redirects to `theclapacademy.com`
+- [x] **H. Second domain:** typing `clapacademy.co.uk` lands on `theclapacademy.com`, so it redirects (user to confirm). Still to check redirect type (301 permanent vs 302 temporary) at https://httpstatus.io
 - [ ] **F. PageSpeed Insights (mobile):** https://pagespeed.web.dev/
 - [ ] **G. Rich Results Test (structured data):** https://search.google.com/test/rich-results
 
