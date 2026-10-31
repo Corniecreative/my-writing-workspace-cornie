@@ -31,3 +31,8 @@ Always reference these for consistency:
 - Maintain consistency across all generated formats
 - Each agent should specialize in their platform's unique requirements
 - Content quality gates should validate against brand guidelines before output
+## SEO Learning Preferences
+- When mentioning any tool, search or resource, always give step-by-step "how to" instructions and a link.
+- At the end of each piece of SEO work, recap the tools, searches and links used: what each was for and how to use it next time. Add new ones to `learning/seo-toolkit.md`.
+- Keep client-facing messages free of method details: show findings, not how they were found.
+- Course materials the user uploads are private: never commit them to the repository.
