@@ -45,7 +45,7 @@
 - [x] **A3.** `site:theclapacademy.com casino -inurl:profile`: done, see 2b
 - [ ] **Sign-up check:** find the Sign up / Join / Register / Log in button on the site and note what it offers (don't register)
 - [ ] **A4.** Try `inurl:forum`, `inurl:blog`, `inurl:post`, `inurl:group` with `site:theclapacademy.com`
-- [ ] **Platform:** what the site is built with (view source, or https://builtwith.com)
+- [ ] **Platform:** BuiltWith (Analytics and Tracking) shows **HighLevel (GoHighLevel)**, Global Site Tag, Google Analytics. CMS section not seen yet: scroll down on BuiltWith, or view source and search `leadconnector` / `highlevel`
 - [ ] **B. Real pages:** what the legitimate pages are, and how many
 - [ ] **C. Sitemap:** `theclapacademy.com/sitemap.xml`
 - [ ] **D. robots.txt:** `theclapacademy.com/robots.txt`
