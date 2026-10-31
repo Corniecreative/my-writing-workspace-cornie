@@ -37,6 +37,14 @@
 - Top-level spam addresses (`/igaming-platform5541`) still need explaining: posts by registered users with publishing rights, or a hack. Confirm with dashboard access and a security scan.
 - WordPress 6.7 is not the latest version: outdated core/plugins are a security risk.
 
+### 5. Brand search (`Clap Academy`)
+- **No casino pages on page 1.** Homepage ranks first with sitelinks. Brand reputation is not visibly damaged yet.
+- Sitelinks shown: Course, **Login**, **Registration**, AI & Automation, **Student Registration** (form: First Name, Last Name, User Name, E-Mail, Password), Project Management with AI. Confirms a public, indexed student sign-up form (the likely door for bots). Three of six sitelinks are login/registration pages instead of programmes. The "Registration" sitelink description reads "Welcome Back · Enter your details to log into the platform" (login text on a registration page).
+- **Second domain:** `clapacademy.co.uk` also ranks (About page), and Trustpilot reviews are filed under `clapacademy.co.uk`. Two websites for one brand.
+- **Google Business Profile:** "Clap Academy", 4.8 stars, 54 Google reviews, Training centre, phone 07722 936139, hours listed, but shows **"Add website"**: no website linked.
+- Other profiles: LinkedIn (210+), Instagram (40+), YouTube, X, Facebook, Skool community.
+- "People also search for" shows unrelated children's schools and daycares: Google's understanding of what the brand is looks weak.
+
 ## Findings
 
 | # | Finding | Type | Priority |
@@ -45,6 +53,10 @@
 | 2 | Only about 27 clean pages found against about 7,340 indexed, so the genuine site is buried under spam | Indexing / reputation | Critical |
 | 3 | WordPress + Tutor LMS public profiles and open registration with no bot protection (likely gap) | Security / configuration | Critical |
 | 4 | WordPress 6.7, not the latest version | Security | High |
+| 5 | Two domains for one brand (theclapacademy.com and clapacademy.co.uk), Trustpilot tied to the .co.uk | Technical / authority | High (confirm redirect) |
+| 6 | Google Business Profile has no website linked (54 reviews, 4.8 stars) | Local SEO | High, quick win |
+| 7 | Sitelinks dominated by Login / Registration pages; registration page shows login text | On-page / architecture | Medium |
+| 8 | Weak brand entity signals (unrelated "People also search for") | Structured data / entity | Medium |
 
 ## Still to check
 
@@ -57,7 +69,8 @@
 - [ ] **B. Real pages:** what the legitimate pages are, and how many
 - [ ] **C. Sitemap:** `theclapacademy.com/sitemap.xml`
 - [ ] **D. robots.txt:** `theclapacademy.com/robots.txt`
-- [ ] **E. Branded search:** search "Clap Academy" and see what shows up
+- [x] **E. Branded search:** done, see section 5
+- [ ] **H. Second domain:** open `clapacademy.co.uk` and see whether it redirects to `theclapacademy.com`
 - [ ] **F. PageSpeed Insights (mobile):** https://pagespeed.web.dev/
 - [ ] **G. Rich Results Test (structured data):** https://search.google.com/test/rich-results
 
