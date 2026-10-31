@@ -16,6 +16,10 @@
   - `/cryptocurrencycasino4803`: "The 3 Greatest Moments In Rainbet Crypto Casino History..."
   - A guide about power tools in the United Kingdom
 
+### 2. Where the spam sits
+- Only 25 of the indexed pages are under `/profile/`. Most spam is elsewhere, e.g. root-level addresses like `/cryptocurrencycasino4803`.
+- Note: Google's result counts are estimates and are unreliable at large numbers. Use them for scale, not as exact figures.
+
 ## Findings
 
 | # | Finding | Type | Priority |
@@ -25,7 +29,9 @@
 ## Still to check
 
 - [x] **A1.** `site:theclapacademy.com casino`: about 2,970
-- [ ] **A2.** `site:theclapacademy.com inurl:profile`
+- [x] **A2.** `site:theclapacademy.com inurl:profile`: only **25**, so most spam is NOT profile pages (possible hack or another open area)
+- [ ] **A3.** `site:theclapacademy.com casino -inurl:profile`: screenshot first 2 pages, note the URL patterns (folders) the spam sits in
+- [ ] **A4.** Try `inurl:forum`, `inurl:blog`, `inurl:post`, `inurl:group` with `site:theclapacademy.com`
 - [ ] **Platform:** what the site is built with (view source, or https://builtwith.com)
 - [ ] **B. Real pages:** what the legitimate pages are, and how many
 - [ ] **C. Sitemap:** `theclapacademy.com/sitemap.xml`
