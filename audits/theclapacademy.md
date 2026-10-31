@@ -134,3 +134,14 @@ You've got 4.8 stars from 54 Google reviews, which is brilliant! But there's no 
 To confirm exactly how they're getting in and how big it really is, I'd need access to your Google Search Console and the website dashboard, and that's when I'd do the full technical audit.
 
 Happy to jump on a call and walk you through it. When are you free this week? 😊
+
+## Client reply (Callistus, 2026-10-31)
+
+- "We need to address these issues ASAP."
+- **The same problem hit the old clapacademy.co.uk site**, which is why they moved to theclapacademy.com and redirected the .co.uk.
+- Asked: are the ~7,300 pages under theclapacademy.com, or is the search drawing from the old redirected site?
+- Wants to talk tomorrow. "Well done on today's great job."
+
+**Answer:** `site:theclapacademy.com` only covers theclapacademy.com (and its subdomains), not clapacademy.co.uk. The spam addresses in the results are theclapacademy.com addresses. So the spam is on the new site: the problem moved with them because the cause (open registration / same setup) wasn't fixed.
+
+**To check before the call:** `site:clapacademy.co.uk` to see whether old spam is still indexed under the old domain.
