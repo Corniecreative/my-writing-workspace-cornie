@@ -54,7 +54,7 @@
 | 2 | Only about 27 clean pages found against about 7,340 indexed, so the genuine site is buried under spam | Indexing / reputation | Critical |
 | 3 | WordPress + Tutor LMS public profiles and open registration with no bot protection (likely gap) | Security / configuration | Critical |
 | 4 | WordPress 6.7, not the latest version | Security | High |
-| 5 | Two domains for one brand (theclapacademy.com and clapacademy.co.uk), Trustpilot tied to the .co.uk | Technical / authority | Medium: .co.uk redirects to .com; Trustpilot, old Google results and profile links still point to .co.uk; confirm it is a 301 |
+| 5 | Two domains for one brand (theclapacademy.com and clapacademy.co.uk), Trustpilot tied to the .co.uk | Technical / authority | Low–Medium: .co.uk 301-redirects to .com (2-hop chain); Trustpilot, old Google results and profile links still point to .co.uk |
 | 6 | Google Business Profile has no website linked (54 reviews, 4.8 stars) | Local SEO | High, quick win |
 | 7 | Sitelinks dominated by Login / Registration pages; registration page shows login text | On-page / architecture | Medium |
 | 8 | Weak brand entity signals (unrelated "People also search for") | Structured data / entity | Medium |
@@ -71,7 +71,7 @@
 - [ ] **C. Sitemap:** `theclapacademy.com/sitemap.xml`
 - [ ] **D. robots.txt:** `theclapacademy.com/robots.txt`
 - [x] **E. Branded search:** done, see section 5
-- [x] **H. Second domain:** typing `clapacademy.co.uk` lands on `theclapacademy.com`, so it redirects (user to confirm). Still to check redirect type (301 permanent vs 302 temporary) at https://httpstatus.io
+- [x] **H. Second domain:** typing `clapacademy.co.uk` lands on `theclapacademy.com`, confirmed with https://httpstatus.io: `http://clapacademy.co.uk` → **301 → 301 → 200** (2 permanent redirects in a chain). Correct type; a single hop would be cleaner (low priority)
 - [ ] **F. PageSpeed Insights (mobile):** https://pagespeed.web.dev/
 - [ ] **G. Rich Results Test (structured data):** https://search.google.com/test/rich-results
 
