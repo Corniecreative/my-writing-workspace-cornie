@@ -167,47 +167,52 @@ subtitle: "Organise & Find Your Starting Point · 60 minutes"
 
 > "Let me show you what AI can do with your number one problem. I'm going to price one cake, live."
 
-**Do:** In your Project, paste this demo prompt. The numbers are made up, so tell the group: "These are example numbers, not my real prices."
+**Do:** In your Project, paste this demo prompt. The numbers are made up (they match the worked example in the Cake Pricing Guide), so tell the group: "These are example numbers, not my real prices."
 
-> Help me price a cake. It's an 8-inch vanilla cake with buttercream.
-> Ingredients (what I paid → how much I used):
-> - Flour: 2kg bag for ₦4,000 → I used 500g
-> - Sugar: 1kg for ₦2,000 → I used 400g
-> - Butter: 500g for ₦5,000 → I used 450g
-> - Eggs: crate of 30 for ₦6,000 → I used 6
-> - Milk: 400g tin for ₦2,500 → I used 200g
-> - Vanilla: 100ml bottle for ₦3,000 → I used 10ml
-> - Baking powder: 100g for ₦1,000 → I used 15g
-> - Icing sugar: 1kg for ₦2,500 → I used 500g
-> Packaging (box and board): ₦3,000
-> Decorations: ₦2,000
-> My time: 4 hours at ₦2,500 per hour
-> Overheads (gas, electricity, data, transport): ₦3,000 per cake
-> Add 30% profit on top of my total cost.
-> Show me a simple table of all costs, my total cost, and a recommended selling price.
+> Help me price a cake. Here is the order:
+> 8-inch round, standard height (3 layers), vanilla sponge, strawberry jam and vanilla buttercream filling, buttercream covering, medium decoration, about 20 party portions.
+>
+> SPONGE (what I paid → how much I used):
+> - Flour: 2kg for ₦4,000 → 450g
+> - Sugar: 1kg for ₦2,000 → 450g
+> - Butter: 500g for ₦5,000 → 450g
+> - Eggs: crate of 30 for ₦6,000 → 8 eggs
+> - Milk: 1L for ₦3,000 → 120ml
+> - Baking powder: 100g for ₦1,000 → 15g
+> - Vanilla: 100ml for ₦3,000 → 10ml
+>
+> BUTTERCREAM costs me ₦5,650 per kg.
+> FILLING: strawberry jam (500g jar for ₦3,500) → 150g, plus 300g buttercream
+> COVERING: 700g buttercream
+> DECORATIONS: gel colours ₦300, sprinkles ₦700, acrylic topper ₦2,500
+> STRUCTURE & PACKAGING: cake drum ₦1,500, box ₦2,000, ribbon ₦300
+> LABOUR: 5.5 hours (quoting, baking, filling, covering, decorating, cleaning) at ₦2,500 per hour
+> OVERHEADS: ₦60,000 per month, and I make 20 cakes a month
+> PROFIT: add 30% on top of my total cost
+>
+> Show me a table with each block (sponge, filling, covering, decorations, structure & packaging, labour, overheads), my total cost, the profit, a selling price rounded up to the nearest ₦500, and the price per portion.
 
 **Answer key (to check AI's maths):**
 
-| Item | Cost |
+| Block | Cost |
 |---|---|
-| Flour | ₦1,000 |
-| Sugar | ₦800 |
-| Butter | ₦4,500 |
-| Eggs | ₦1,200 |
-| Milk | ₦1,250 |
-| Vanilla | ₦300 |
-| Baking powder | ₦150 |
-| Icing sugar | ₦1,250 |
-| **Ingredients total** | **₦10,450** |
-| Packaging + decorations | ₦5,000 |
-| Labour (4 hrs × ₦2,500) | ₦10,000 |
-| Overheads | ₦3,000 |
-| **Total cost** | **₦28,450** |
-| + 30% profit (₦8,535) | **₦36,985 → round to ₦37,000** |
+| Sponge | ₦8,710 |
+| Filling | ₦2,745 |
+| Covering | ₦3,955 |
+| Decorations | ₦3,500 |
+| Structure & packaging | ₦3,800 |
+| Labour (5.5 hrs × ₦2,500) | ₦13,750 |
+| Overheads (₦60,000 ÷ 20) | ₦3,000 |
+| **Total cost** | **₦39,460** |
+| Profit (30%) | ₦11,838 |
+| **Selling price** | **₦51,298 → ₦51,500** |
+| Per party portion (20) | about ₦2,575 |
 
-*Easy line to check live on your calculator: eggs, ₦6,000 ÷ 30 × 6 = ₦1,200.*
+*Easy line to check live on your calculator: eggs, ₦6,000 ÷ 30 × 8 = ₦1,600.*
 
-*Teaching point: point out that ₦10,000 of the cost is the baker's time. Many bakers leave this out, which is why they feel busy but don't make money.*
+*Teaching point: the ingredients (sponge, filling, covering) are only ₦15,410. The baker's time is ₦13,750. A baker who charges ₦25,000 "because ingredients cost ₦15,000" is working for free.*
+
+*Then ask:* "What would change if this were a 10-inch cake? Or square? Or tall?" *Why: it shows that size, shape, height, filling and covering all change the price, which is exactly why they need a proper system, and that's what Day 2 is for.*
 
 **While AI answers, say:**
 
