@@ -167,21 +167,47 @@ subtitle: "Organise & Find Your Starting Point · 60 minutes"
 
 > "Let me show you what AI can do with your number one problem. I'm going to price one cake, live."
 
-**Do:** In your Project, paste a prompt like this, using **your own real numbers** (prepare them before the session):
+**Do:** In your Project, paste this demo prompt. The numbers are made up, so tell the group: "These are example numbers, not my real prices."
 
 > Help me price a cake. It's an 8-inch vanilla cake with buttercream.
 > Ingredients (what I paid → how much I used):
-> - Flour: 2kg bag for [price] → I used 500g
-> - Sugar: 1kg for [price] → I used 400g
-> - Butter: 500g for [price] → I used 450g
-> - Eggs: crate of 30 for [price] → I used 6
-> - [add the rest]
-> Packaging (box and board): [price]
-> Decorations: [price]
-> My time: 4 hours at [your hourly rate]
-> Overheads (gas, electricity, data, transport): [amount] per cake
-> Add 30% profit.
+> - Flour: 2kg bag for ₦4,000 → I used 500g
+> - Sugar: 1kg for ₦2,000 → I used 400g
+> - Butter: 500g for ₦5,000 → I used 450g
+> - Eggs: crate of 30 for ₦6,000 → I used 6
+> - Milk: 400g tin for ₦2,500 → I used 200g
+> - Vanilla: 100ml bottle for ₦3,000 → I used 10ml
+> - Baking powder: 100g for ₦1,000 → I used 15g
+> - Icing sugar: 1kg for ₦2,500 → I used 500g
+> Packaging (box and board): ₦3,000
+> Decorations: ₦2,000
+> My time: 4 hours at ₦2,500 per hour
+> Overheads (gas, electricity, data, transport): ₦3,000 per cake
+> Add 30% profit on top of my total cost.
 > Show me a simple table of all costs, my total cost, and a recommended selling price.
+
+**Answer key (to check AI's maths):**
+
+| Item | Cost |
+|---|---|
+| Flour | ₦1,000 |
+| Sugar | ₦800 |
+| Butter | ₦4,500 |
+| Eggs | ₦1,200 |
+| Milk | ₦1,250 |
+| Vanilla | ₦300 |
+| Baking powder | ₦150 |
+| Icing sugar | ₦1,250 |
+| **Ingredients total** | **₦10,450** |
+| Packaging + decorations | ₦5,000 |
+| Labour (4 hrs × ₦2,500) | ₦10,000 |
+| Overheads | ₦3,000 |
+| **Total cost** | **₦28,450** |
+| + 30% profit (₦8,535) | **₦36,985 → round to ₦37,000** |
+
+*Easy line to check live on your calculator: eggs, ₦6,000 ÷ 30 × 6 = ₦1,200.*
+
+*Teaching point: point out that ₦10,000 of the cost is the baker's time. Many bakers leave this out, which is why they feel busy but don't make money.*
 
 **While AI answers, say:**
 
